@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 dotenv.config();
 
 const express = require('express');
@@ -22,10 +23,17 @@ app.use('/admin', adminRouter); // Example: http://localhost:3214/admin/allcateg
 
 console.log("MONGO_URI from env:", process.env.MONGO_URI);
 
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`Server started successfully at http://localhost:${port}`);
-    });
-});
+connectDB().then(
+    async () => {
+        const directTest = await mongoose.connection.db.collection('categories').find().toArray();
+        console.log("Direct collection access test:", directTest);
+//       } => {
+//     app.listen(port, () => {
+//         console.log(`Server started successfully at http://localhost:${port}`);
+//     });
+// }).catch(err => {
+//     console.error("DB connection failed:", err);
+// });
+    })
 
 module.exports = app;
