@@ -446,7 +446,7 @@
       {
         "id": 1,
         "cuisineName": "Margherita Pizza",
-        "cuisineImg": "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94",
+        "cuisineImg": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/07/margherita-pizza-recipe.jpg",
         "cuisineId": "pizza-001",
         "cuisinePrice": 299,
         "cuisineDescription": "Classic pizza with tomato sauce, mozzarella, and fresh basil.",
@@ -545,7 +545,7 @@
       {
         "id": 10,
         "cuisineName": "Meat Lovers Pizza",
-        "cuisineImg": "https://images.unsplash.com/photo-1620374645362-1d6f36a4b3a5",
+        "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9Cjo45icDE3gXtSgd3PVzhohX2pVOmHEoRg&s",
         "cuisineId": "pizza-010",
         "cuisinePrice": 549,
         "cuisineDescription": "Pepperoni, sausage, bacon, ham, and ground beef.",
@@ -1385,7 +1385,7 @@
       {
         "id": 6,
         "cuisineName": "Shrimp Tempura Roll",
-        "cuisineImg": "https://norecipes.com/wp-content/uploads/2022/02/shrimp-tempura-roll-004.jpg",
+        "cuisineImg": "https://cookingwithayeh.com/wp-content/uploads/2024/07/Shrimp-Tempura-Roll-SQ-4.jpg",
         "cuisineId": "WR006",
         "cuisinePrice": 11.99,
         "cuisineDescription": "Crispy shrimp tempura with avocado and cucumber.",
@@ -2450,7 +2450,7 @@
         "veganFriendly": false,
         "cuisineDescription": "https://www.onesweetmess.com/wp-content/uploads/2013/11/Funfetti-Cake-Batter-Oreo-Ice-Cream-www.themessybakerblog.com-8980.jpg",
         "category": "Novelty",
-        "cuisineImg": "https://images.unsplash.com/photo-1517093157656-bf381a9f8d1e",
+        "cuisineImg": "https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg",
         "cuisineId": "IC032"
       },
       {
