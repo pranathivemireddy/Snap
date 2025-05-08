@@ -4,9 +4,19 @@ import { useState } from "react";
 function BurgerVault() {
   const burgers = data[0]?.burgers || [];
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredBurgers = burgers.filter((burger) =>
+  const [vegFilter, setVegFilter] = useState(false);
+  const [nonVegFilter, setNonVegFilter] = useState(false);
+  const filteredBurgers = burgers.filter((burger) =>{
     burger.cuisineName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    const matchesSearch = burger.cuisineName.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const showVeg = vegFilter && burger.veganFriendly;
+    const showNonVeg = nonVegFilter && !burger.veganFriendly;
+    
+    if (!vegFilter && !nonVegFilter) return matchesSearch;
+   
+    return matchesSearch && (showVeg || showNonVeg);
+  });
   return (
     <>
     <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10 shadow-sm">
@@ -17,12 +27,18 @@ function BurgerVault() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button className="border bg-green-500 px-3 py-1 rounded text-white hover:bg-green-600 transition">
-        Veg
-      </button>
-      <button className="border bg-red-500 px-3 py-1 rounded text-white hover:bg-red-600 transition">
-        Non Veg
-      </button>
+       <button 
+          className={`border px-3 py-1 rounded transition ${vegFilter ? 'bg-green-500 text-white' : 'bg-white text-green-500'}`}
+          onClick={() => setVegFilter(!vegFilter)}
+        >
+          Veg
+        </button>
+        <button 
+          className={`border px-3 py-1 rounded transition ${nonVegFilter ? 'bg-red-500 text-white' : 'bg-white text-red-500'}`}
+          onClick={() => setNonVegFilter(!nonVegFilter)}
+        >
+          Non Veg
+        </button>
     </div>
 
     <div className="p-4 pb-20">
@@ -32,13 +48,23 @@ function BurgerVault() {
       {filteredBurgers.length === 0 && (
           <p className="text-center text-gray-500">No burgers found</p>
         )}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredBurgers.map((burger) => (
-          <div
-            key={burger.id}
-            className="flex flex-col items-center rounded-lg p-4 bg-white"
-          >
-            
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredBurgers.map((burger) => (
+            <div
+              key={burger.id}
+              className="flex flex-col items-center rounded-lg p-4 bg-white relative"
+            >
+              <div className="absolute top-2 right-2">
+                {burger.veganFriendly ? (
+                  <div className="flex items-center justify-center w-6 h-6 bg-white border-2 border-green-600 rounded-full">
+                    <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center w-6 h-6 bg-white border-2 border-red-600 rounded-sm">
+                    <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[8px] border-b-red-600 -mt-[2px]"></div>
+                  </div>
+                )}
+              </div>
             <div className="relative">
             <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm ">
                 -

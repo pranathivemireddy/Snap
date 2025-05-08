@@ -18,12 +18,6 @@ function Sippity() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="border bg-green-500 px-3 py-1 rounded text-white hover:bg-green-600 transition">
-          Veg
-        </button>
-        <button className="border bg-red-500 px-3 py-1 rounded text-white hover:bg-red-600 transition">
-          Non Veg
-        </button>
       </div>
 
       <div className="p-4 pb-20">
