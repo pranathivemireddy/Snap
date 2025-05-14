@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import Video from './Components/Video'
-import Stalls from './Components/Stalls'
+import Video from './Pages/Video'
+import Stalls from './Pages/Stalls'
 import { BrowserRouter as Router, Routes,Route} from 'react-router-dom'
-import Biryanispot from './Components/Biryanispot'
-import Pizzarity from './Components/Pizzarity'
-import BurgerVault from './Components/BurgerVault'
-import Wrapeats from './Components/Wrapeats'  
-import Sippity from './Components/Sippity'  
-import Snoozyscoops from './Components/Snoozyscoops'
+import Biryanispot from './Pages/Biryanispot'
+import Pizzarity from './Pages/Pizzarity'
+import BurgerVault from './Pages/BurgerVault'
+import Wrapeats from './Pages/Wrapeats'  
+import Sippity from './Pages/Sippity'  
+import Snoozyscoops from './Pages/Snoozyscoops'
+import Cart from './Components/Cart'
+import Payment from './Components/Payment'
 // import Admin from '../FrontEnd/Admin/admin'
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +26,8 @@ function App() {
           <Route path='/wrapeats' element={<Wrapeats/>}/>
           <Route path='/sippity' element={<Sippity/>}/>
           <Route path='/snoozyscoops' element={<Snoozyscoops/>}/>
+          <Route path='cart' element={<Cart/>}/>
+          <Route path='/payment' element={<Payment/>}/>
           {/* <Route path='/admin' element={<Admin/>}/> */}
         </Routes>
     </Router>

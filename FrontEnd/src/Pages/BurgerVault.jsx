@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import data from "../Data/data.json";
 import { useState } from "react";
+import { useCart } from "../Components/CartContext.jsx";
 function BurgerVault() {
   const burgers = data[0]?.burgers || [];
+  const navigate=useNavigate();
+  const { addToCart } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
   const [vegFilter, setVegFilter] = useState(false);
   const [nonVegFilter, setNonVegFilter] = useState(false);
+  const [quantities,setQuantities]=useState({})
   const filteredBurgers = burgers.filter((burger) =>{
     burger.cuisineName.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesSearch = burger.cuisineName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -17,9 +21,22 @@ function BurgerVault() {
    
     return matchesSearch && (showVeg || showNonVeg);
   });
+  const handleIncrement = (wrapId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [wrapId]: (prev[wrapId] || 0) + 1,
+    }));
+  };
+
+  const handleDecrement = (wrapId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [wrapId]: Math.max((prev[wrapId] || 0) - 1, 0),
+    }));
+  };
   return (
     <>
-    <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10 shadow-sm">
+    <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10">
       <input
         type="text"
         placeholder="Search burger's..."
@@ -52,7 +69,7 @@ function BurgerVault() {
           {filteredBurgers.map((burger) => (
             <div
               key={burger.id}
-              className="flex flex-col items-center rounded-lg p-4 bg-white relative"
+              className="flex flex-col items-center rounded-lg p-4 bg-white relative shadow-sm"
             >
               <div className="absolute top-2 right-2">
                 {burger.veganFriendly ? (
@@ -66,7 +83,7 @@ function BurgerVault() {
                 )}
               </div>
             <div className="relative">
-            <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm ">
+            <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm " onClick={() => handleDeccrement(burger.id)}>
                 -
               </button>
               <img
@@ -79,7 +96,7 @@ function BurgerVault() {
                   e.target.onerror = null;
                 }}
               />
-              <button className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600">
+              <button className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600" onClick={() => handleIncrement(burger.id)}>
                 +
               </button>
             </div>
@@ -88,6 +105,7 @@ function BurgerVault() {
               {burger.cuisineName}
             </h3>
             <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">₹{burger.cuisinePrice}</h3>
+            <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">Quantity:{quantities[burger.id]||0}</h3>
             </div>
           </div>
         ))}
@@ -105,9 +123,22 @@ function BurgerVault() {
           Back
         </Link>
       </button>
-      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition">
-        Go to Cart
-      </button>
+      <button
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
+          onClick={() => {
+  burgers.forEach((burger) => {
+    const qty = quantities[burger.id] || 0;
+    if (qty > 0) {
+      addToCart({...burger,
+        quantity: qty,
+        cuisinePrice: parseFloat(burger.cuisinePrice),});
+    }
+  });
+  navigate("/cart");
+}}
+        >
+          Go to Cart
+        </button>
     </div>
   </>
   );

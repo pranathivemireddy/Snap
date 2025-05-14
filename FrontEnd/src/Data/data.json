@@ -1332,7 +1332,7 @@
         "cuisineName": "California Roll",
         "cuisineImg": "https://media.istockphoto.com/id/115547349/photo/california-roll.jpg?s=612x612&w=0&k=20&c=cMqL7kKiMZdfRYe0HLhpo9IptPSTeULGgYj7PQzUo28=",
         "cuisineId": "WR001",
-        "cuisinePrice": 8.99,
+        "cuisinePrice": 99,
         "cuisineDescription": "A classic roll with crab, avocado, and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1343,7 +1343,7 @@
         "cuisineName": "Spicy Tuna Roll",
         "cuisineImg": "https://www.tiger-corporation.com/wp-content/uploads/2023/02/hero-img-recipe-spicy-tuna-3db6e125056f2bde01321a3da5d290da.jpg",
         "cuisineId": "WR002",
-        "cuisinePrice": 9.99,
+        "cuisinePrice": 199,
         "cuisineDescription": "Fresh tuna mixed with spicy mayo, wrapped in seaweed and rice.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1354,7 +1354,7 @@
         "cuisineName": "Dragon Roll",
         "cuisineImg": "https://www.justonecookbook.com/wp-content/uploads/2020/06/Dragon-Roll-0286-I.jpg",
         "cuisineId": "WR003",
-        "cuisinePrice": 12.99,
+        "cuisinePrice": 129,
         "cuisineDescription": "Eel and cucumber topped with avocado slices.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1365,7 +1365,7 @@
         "cuisineName": "Rainbow Roll",
         "cuisineImg": "https://media.istockphoto.com/id/1354366250/photo/set-of-rainbow-uramaki-sushi-rolls-with-avocado.jpg?s=612x612&w=0&k=20&c=wgFUfdRVdtW976mlii4zK_Ziy7rqEcXWPHjGZ8dO5A0=",
         "cuisineId": "WR004",
-        "cuisinePrice": 11.99,
+        "cuisinePrice": 119,
         "cuisineDescription": "California roll topped with assorted sashimi.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1376,7 +1376,7 @@
         "cuisineName": "Philadelphia Roll",
         "cuisineImg": "https://www.munchkintime.com/wp-content/uploads/2024/07/Philadelphia-Roll-recipe-14.jpg",
         "cuisineId": "WR005",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 109,
         "cuisineDescription": "Smoked salmon, cream cheese, and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1387,7 +1387,7 @@
         "cuisineName": "Shrimp Tempura Roll",
         "cuisineImg": "https://cookingwithayeh.com/wp-content/uploads/2024/07/Shrimp-Tempura-Roll-SQ-4.jpg",
         "cuisineId": "WR006",
-        "cuisinePrice": 11.99,
+        "cuisinePrice": 109,
         "cuisineDescription": "Crispy shrimp tempura with avocado and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1398,7 +1398,7 @@
         "cuisineName": "Avocado Roll",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PiHS4HY6QNcyKMe46T6f3-s4-8qmpuMhDA&s",
         "cuisineId": "WR007",
-        "cuisinePrice": 6.99,
+        "cuisinePrice": 169,
         "cuisineDescription": "Simple roll with fresh avocado.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1409,7 +1409,7 @@
         "cuisineName": "Cucumber Roll",
         "cuisineImg": "https://cdn.foodfaithfitness.com/uploads/2024/06/Cucumber-Roll-A_FFF_Cucumber_Sushi_Rolls_Close_Up_5.jpg.jpg",
         "cuisineId": "WR008",
-        "cuisinePrice": 5.99,
+        "cuisinePrice": 159,
         "cuisineDescription": "Fresh cucumber wrapped in rice and seaweed.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1420,7 +1420,7 @@
         "cuisineName": "Spicy Salmon Roll",
         "cuisineImg": "https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/recipe_pics/spicy_salmon_roll.jpg",
         "cuisineId": "WR009",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 129,
         "cuisineDescription": "Salmon mixed with spicy mayo and cucumber.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1431,7 +1431,7 @@
         "cuisineName": "Spider Roll",
         "cuisineImg": "https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/mtsfibyw/33416353-a582-4f13-972d-b7a71256056c.jpg",
         "cuisineId": "WR010",
-        "cuisinePrice": 13.99,
+        "cuisinePrice": 99,
         "cuisineDescription": "Soft-shell crab tempura with avocado and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1442,7 +1442,7 @@
         "cuisineName": "Boston Roll",
         "cuisineImg": "https://www.savorysweetspoon.com/wp-content/uploads/2023/08/Boston-Roll-1x1-1.jpg",
         "cuisineId": "WR011",
-        "cuisinePrice": 9.99,
+        "cuisinePrice": 99,
         "cuisineDescription": "Poached shrimp, avocado, and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1453,7 +1453,7 @@
         "cuisineName": "Alaska Roll",
         "cuisineImg": "https://feedmebetter.com/wp-content/uploads/2023/08/Alaska-Roll-Thumbnail-1.jpg.webp",
         "cuisineId": "WR012",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 109,
         "cuisineDescription": "Salmon, avocado, and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1464,7 +1464,7 @@
         "cuisineName": "Dynamite Roll",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6DLzTswN8XHGHLFdT2PaALFIkHxwqhEabSQ&s",
         "cuisineId": "WR013",
-        "cuisinePrice": 11.99,
+        "cuisinePrice": 119,
         "cuisineDescription": "Shrimp tempura, avocado, and spicy mayo.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1475,7 +1475,7 @@
         "cuisineName": "Volcano Roll",
         "cuisineImg": "https://www.skinnytaste.com/wp-content/uploads/2017/08/California-Spicy-Crab-Stuffed-Avocado-1-2-500x500.jpg",
         "cuisineId": "WR014",
-        "cuisinePrice": 12.99,
+        "cuisinePrice": 99,
         "cuisineDescription": "Baked crab and avocado topped with spicy sauce.",
         "spicyLevel": "Hot",
         "servesFor": 1,
@@ -1486,7 +1486,7 @@
         "cuisineName": "Caterpillar Roll",
         "cuisineImg": "https://media.istockphoto.com/id/183137625/photo/caterpillar-roll.jpg?s=612x612&w=0&k=20&c=JCA77WnWA-y1PzyA8e4tZhyL08_vOYBYthsYcrnEIMo=",
         "cuisineId": "WR015",
-        "cuisinePrice": 12.99,
+        "cuisinePrice": 169,
         "cuisineDescription": "Eel and cucumber topped with avocado slices.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1497,7 +1497,7 @@
         "cuisineName": "Sweet Potato Roll",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCNrqvHM3CNaTwVKoL8xVQOGJ1yfbGY_RSWS_1t5aXqcMO0MV6fGJw9SLfr-FqL65q9eU&usqp=CAU",
         "cuisineId": "WR016",
-        "cuisinePrice": 7.99,
+        "cuisinePrice": 109,
         "cuisineDescription": "Tempura-fried sweet potato wrapped in rice.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1508,7 +1508,7 @@
         "cuisineName": "Tuna Avocado Roll",
         "cuisineImg": "https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics/tuna_avocado_roll.jpg",
         "cuisineId": "WR017",
-        "cuisinePrice": 9.99,
+        "cuisinePrice": 99,
         "cuisineDescription": "Fresh tuna and avocado wrapped in rice.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1519,7 +1519,7 @@
         "cuisineName": "Salmon Skin Roll",
         "cuisineImg": "https://media.istockphoto.com/id/518346986/photo/salmon-skin-roll.jpg?s=1024x1024&w=is&k=20&c=Ke7MdQuH0SUlI5tu4nSw3lNOuph92Tab0txi5ThZ3Vo=",
         "cuisineId": "WR018",
-        "cuisinePrice": 8.99,
+        "cuisinePrice": 189,
         "cuisineDescription": "Crispy salmon skin with cucumber and scallions.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1530,7 +1530,7 @@
         "cuisineName": "Yellowtail Roll",
         "cuisineImg": "https://www.justonecookbook.com/wp-content/uploads/2013/11/Yellowtail-Roll-II.jpg",
         "cuisineId": "WR019",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 190,
         "cuisineDescription": "Fresh yellowtail and scallions.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1541,7 +1541,7 @@
         "cuisineName": "Eel Cucumber Roll",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFRb3Ksd13PQJ6ysyeRfCqYUNmbImNUBvVAA&s",
         "cuisineId": "WR020",
-        "cuisinePrice": 11.99,
+        "cuisinePrice": 119,
         "cuisineDescription": "Grilled eel and cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1552,7 +1552,7 @@
         "cuisineName": "Asparagus Roll",
         "cuisineImg": "https://images.squarespace-cdn.com/content/v1/54ddaa05e4b0693c885f2a2b/1555946626036-FXSZTMJNJJOJWXP4FTTH/asparagus%2Brolls.jpg",
         "cuisineId": "WR021",
-        "cuisinePrice": 6.99,
+        "cuisinePrice": 299,
         "cuisineDescription": "Steamed asparagus wrapped in rice.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1563,7 +1563,7 @@
         "cuisineName": "Mango Roll",
         "cuisineImg": "https://thumbs.dreamstime.com/b/indian-famous-multiple-dry-fruits-mango-roll-sweet-food-302334566.jpg",
         "cuisineId": "WR022",
-        "cuisinePrice": 8.99,
+        "cuisinePrice": 124,
         "cuisineDescription": "Fresh mango and avocado.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1574,7 +1574,7 @@
         "cuisineName": "Tempura Veggie Roll",
         "cuisineImg": "https://c.ndtvimg.com/2023-10/7h05mcqg_veg-tempura-roll_625x300_04_October_23.jpg",
         "cuisineId": "WR023",
-        "cuisinePrice": 9.99,
+        "cuisinePrice": 125,
         "cuisineDescription": "Assorted tempura vegetables.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1585,7 +1585,7 @@
         "cuisineName": "Crab Roll",
         "cuisineImg": "https://media.istockphoto.com/id/1415598266/photo/creamy-crab-stuffed-tilapia.jpg?s=612x612&w=0&k=20&c=MSWgoJc4unWOCIkqCT-VBaIj_palyAoLfnFE4REdlu8=",
         "cuisineId": "WR024",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 109,
         "cuisineDescription": "Fresh crab meat with cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1596,7 +1596,7 @@
         "cuisineName": "Scallop Roll",
         "cuisineImg": "https://images.squarespace-cdn.com/content/v1/5c6c8783523958b58c320e1b/89ed6ee3-d58e-411b-bdf5-2ad8412f6ce9/Chelsea-Market-Scallop-Roll-3.jpg",
         "cuisineId": "WR025",
-        "cuisinePrice": 12.99,
+        "cuisinePrice": 129,
         "cuisineDescription": "Fresh scallops with spicy mayo.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1607,7 +1607,7 @@
         "cuisineName": "Spicy Crab Roll",
         "cuisineImg": "https://feedmebetter.com/wp-content/uploads/2024/03/Spicy-crab-rolls.jpg.webp",
         "cuisineId": "WR026",
-        "cuisinePrice": 11.99,
+        "cuisinePrice": 99,
         "cuisineDescription": "Crab meat mixed with spicy sauce.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1618,7 +1618,7 @@
         "cuisineName": "Vegetable Tempura Roll",
         "cuisineImg": "https://media.istockphoto.com/id/2169441052/photo/tempura-and-philadelphia-sushi-rolls-decorated-with-microgreens-being-served-on-black-plate.jpg?s=612x612&w=0&k=20&c=LKPJXVfqFseMEkI24RRa91KehAalGFHhoy4lvmlrWXA=",
         "cuisineId": "WR027",
-        "cuisinePrice": 8.99,
+        "cuisinePrice": 289,
         "cuisineDescription": "Assorted tempura vegetables.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1629,7 +1629,7 @@
         "cuisineName": "Tofu Roll",
         "cuisineImg": "https://thumbs.dreamstime.com/b/tofu-roll-dim-sum-21086579.jpg",
         "cuisineId": "WR028",
-        "cuisinePrice": 7.99,
+        "cuisinePrice": 179,
         "cuisineDescription": "Grilled tofu with vegetables.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1640,7 +1640,7 @@
         "cuisineName": "Octopus Roll",
         "cuisineImg": "https://c8.alamy.com/comp/P1WA7G/octopus-roll-with-avocado-P1WA7G.jpg",
         "cuisineId": "WR029",
-        "cuisinePrice": 11.99,
+        "cuisinePrice": 119,
         "cuisineDescription": "Sliced octopus with cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1651,7 +1651,7 @@
         "cuisineName": "Jalapeño Roll",
         "cuisineImg": "https://thevegandairy.com/wp-content/uploads/2022/02/Jalapeno-Popper-Spring-Rolls.jpg",
         "cuisineId": "WR030",
-        "cuisinePrice": 9.99,
+        "cuisinePrice": 89,
         "cuisineDescription": "Spicy jalapeño with tuna or salmon.",
         "spicyLevel": "Hot",
         "servesFor": 1,
@@ -1662,7 +1662,7 @@
         "cuisineName": "Kimchi Roll",
         "cuisineImg": "https://www.shutterstock.com/image-photo/gimbap-korean-rice-roll-dish-260nw-2567684991.jpg",
         "cuisineId": "WR031",
-        "cuisinePrice": 8.99,
+        "cuisinePrice":100,
         "cuisineDescription": "Spicy kimchi with tofu or vegetables.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1673,7 +1673,7 @@
         "cuisineName": "Unagi Roll",
         "cuisineImg": "https://upload.wikimedia.org/wikipedia/commons/6/60/Shiki_unagi_roll.JPG",
         "cuisineId": "WR032",
-        "cuisinePrice": 13.99,
+        "cuisinePrice": 139,
         "cuisineDescription": "Grilled freshwater eel with sweet sauce.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1684,7 +1684,7 @@
         "cuisineName": "Cream Cheese Roll",
         "cuisineImg": "https://www.shutterstock.com/image-photo/ham-cream-cheese-rolled-flour-600nw-2164866787.jpg",
         "cuisineId": "WR033",
-        "cuisinePrice": 8.99,
+        "cuisinePrice": 189,
         "cuisineDescription": "Cream cheese with avocado or cucumber.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1695,7 +1695,7 @@
         "cuisineName": "Wasabi Roll",
         "cuisineImg": "https://static.wixstatic.com/media/596070_eeb334891f414b0d81c2fce496d119ae~mv2.jpg/v1/fill/w_568,h_426,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/596070_eeb334891f414b0d81c2fce496d119ae~mv2.jpg",
         "cuisineId": "WR034",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 109,
         "cuisineDescription": "Spicy wasabi-infused tuna or salmon.",
         "spicyLevel": "Hot",
         "servesFor": 1,
@@ -1706,7 +1706,7 @@
         "cuisineName": "BBQ Eel Roll",
         "cuisineImg": "https://images.squarespace-cdn.com/content/v1/540a1b26e4b0c46f2351b697/1552437356311-8Q6QUH2QI9W0AF8K8GFU/bbq+eel+roll.jpg?format=1000w",
         "cuisineId": "WR035",
-        "cuisinePrice": 12.99,
+        "cuisinePrice": 129,
         "cuisineDescription": "Grilled eel with BBQ sauce.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1717,7 +1717,7 @@
         "cuisineName": "Surf and Turf Roll",
         "cuisineImg": "https://media-cdn.tripadvisor.com/media/photo-s/0f/0d/2c/d2/surf-turf-roll.jpg",
         "cuisineId": "WR036",
-        "cuisinePrice": 14.99,
+        "cuisinePrice": 197,
         "cuisineDescription": "Beef and shrimp tempura with spicy mayo.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1728,7 +1728,7 @@
         "cuisineName": "Cucumber Avocado Roll",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_DY5ijcIkWztH-SbhygHFfIcdfq2_qWCpJw&s",
         "cuisineId": "WR037",
-        "cuisinePrice": 7.99,
+        "cuisinePrice": 175,
         "cuisineDescription": "Fresh cucumber and avocado.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1739,7 +1739,7 @@
         "cuisineName": "Spicy Scallop Roll",
         "cuisineImg": "https://cdn3.didevelop.com/public/cdn/533_4f7b65801f364082c1edac528c09d039.jpg",
         "cuisineId": "WR038",
-        "cuisinePrice": 13.99,
+        "cuisinePrice": 112,
         "cuisineDescription": "Fresh scallops with spicy sauce.",
         "spicyLevel": "Medium",
         "servesFor": 1,
@@ -1750,7 +1750,7 @@
         "cuisineName": "Mushroom Roll",
         "cuisineImg": "https://media-cdn.tripadvisor.com/media/photo-s/1c/03/de/28/magic-mushroom-roll.jpg",
         "cuisineId": "WR039",
-        "cuisinePrice": 7.99,
+        "cuisinePrice": 119,
         "cuisineDescription": "Sautéed mushrooms with rice.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -1761,7 +1761,7 @@
         "cuisineName": "Tropical Roll",
         "cuisineImg": "https://media-cdn.tripadvisor.com/media/photo-m/1280/16/de/ef/7a/tropical-roll.jpg",
         "cuisineId": "WR040",
-        "cuisinePrice": 10.99,
+        "cuisinePrice": 79,
         "cuisineDescription": "Mango, avocado, and coconut flakes.",
         "spicyLevel": "Mild",
         "servesFor": 1,
@@ -2108,9 +2108,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Creamy vanilla bean ice cream made with real Madagascar vanilla",
-        "category": "Classic",
         "cuisineImg": "https://www.chiselandfork.com/wp-content/uploads/2022/09/vanilla-bean-ice-cream-2.jpg",
-        "cuisineId": "IC001"
+        "cuisineId": "IC001",
+        "spicyLevel":"None"
       },
       {
         "id": 2,
@@ -2119,9 +2119,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Rich chocolate ice cream with fudge swirls",
-        "category": "Chocolate",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkoCP-tMsFE7P2VXXwyZ3u1FcGIydtuNvRg&s",
-        "cuisineId": "IC002"
+        "cuisineId": "IC002",
+        "spicyLevel":"None"
       },
       {
         "id": 3,
@@ -2130,9 +2130,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Creamy strawberry ice cream with real fruit swirls",
-        "category": "Fruit",
         "cuisineImg": "https://elavegan.com/wp-content/uploads/2022/07/creamy-vegan-strawberry-ice-cream-in-small-bowl-with-spoon.jpg",
-        "cuisineId": "IC003"
+        "cuisineId": "IC003",
+        "spicyLevel":"None"
       },
       {
         "id": 4,
@@ -2141,9 +2141,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free coconut milk based ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://www.mydarlingvegan.com/wp-content/uploads/2018/05/Coconut-Ice-Cream8.jpg",
-        "cuisineId": "IC004"
+        "cuisineId": "IC004",
+        "spicyLevel":"None"
       },
       {
         "id": 5,
@@ -2152,9 +2152,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Refreshing mint ice cream with chocolate chunks",
-        "category": "Classic",
         "cuisineImg": "https://paleoglutenfree.com/wp-content/uploads/2016/06/paleo-dessert-ice-cream-678x1024.jpg",
-        "cuisineId": "IC005"
+        "cuisineId": "IC005",
+        "spicyLevel":"None"
       },
       {
         "id": 6,
@@ -2163,9 +2163,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Vanilla ice cream with crushed chocolate cookies",
-        "category": "Cookie",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3D5sGX9hhLGVFJauF9PUxhn6WbGeYOnssJA&s",
-        "cuisineId": "IC006"
+        "cuisineId": "IC006",
+        "spicyLevel":"None"
       },
       {
         "id": 7,
@@ -2174,9 +2174,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Rich dairy-free chocolate ice cream made with almond milk",
-        "category": "Vegan",
         "cuisineImg": "https://deliciousmadeeasy.com/wp-content/uploads/2015/12/Dairy-Free-Chocolate-Ice-Cream-720x720.jpg",
-        "cuisineId": "IC007"
+        "cuisineId": "IC007",
+        "spicyLevel":"None"
       },
       {
         "id": 8,
@@ -2185,9 +2185,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Buttery vanilla ice cream with roasted pecans",
-        "category": "Nut",
         "cuisineImg": "https://i1.wp.com/lmld.org/wp-content/uploads/2021/05/Butter-Pecan-Ice-Cream-15.jpg",
-        "cuisineId": "IC008"
+        "cuisineId": "IC008",
+        "spicyLevel":"None"
       },
       {
         "id": 9,
@@ -2196,9 +2196,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Tropical mango flavored dairy-free sorbet",
-        "category": "Sorbet",
         "cuisineImg": "https://www.scotchandscones.com/wp-content/uploads/2022/07/mango-sorbet-bowl.jpg",
-        "cuisineId": "IC009"
+        "cuisineId": "IC009",
+        "spicyLevel":"None"
       },
       {
         "id": 10,
@@ -2207,9 +2207,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Chocolate ice cream with marshmallows and almonds",
-        "category": "Chocolate",
         "cuisineImg": "https://www.allrecipes.com/thmb/uniRtJB3GNVGBm1mtiy3eQ3Qn9I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/5815646-8b780d5e3262401d9492b89a186560fe.jpg",
-        "cuisineId": "IC010"
+        "cuisineId": "IC010",
+        "spicyLevel":"None"
       },
       {
         "id": 11,
@@ -2218,9 +2218,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Creamy pistachio flavored ice cream with nuts",
-        "category": "Nut",
         "cuisineImg": "https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/09/Pistachio-ice-cream-hero-06.jpg",
-        "cuisineId": "IC011"
+        "cuisineId": "IC011",
+        "spicyLevel":"None"
       },
       {
         "id": 12,
@@ -2229,9 +2229,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free strawberry ice cream made with coconut milk",
-        "category": "Vegan",
         "cuisineImg": "https://butterandbliss.net/wp-content/uploads/2022/05/Dairy-Free-Strawberry-Ice-Cream-BUTTERANDBLISS-6-of-10-1200x1800.jpg",
-        "cuisineId": "IC012"
+        "cuisineId": "IC012",
+        "spicyLevel":"None"
       },
       {
         "id": 13,
@@ -2240,9 +2240,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Coffee flavored ice cream with toffee bits",
-        "category": "Coffee",
         "cuisineImg": "https://i1.wp.com/lifecurrentsblog.com/wp-content/uploads/2012/07/no-churn-ice-cream.jpg",
-        "cuisineId": "IC013"
+        "cuisineId": "IC013",
+        "spicyLevel":"None"
       },
       {
         "id": 14,
@@ -2251,9 +2251,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Tangy lemon flavored dairy-free sorbet",
-        "category": "Sorbet",
         "cuisineImg": "https://images.unsplash.com/photo-1551751299-1b51cab2694c",
-        "cuisineId": "IC014"
+        "cuisineId": "IC014",
+        "spicyLevel":"None"
       },
       {
         "id": 15,
@@ -2262,9 +2262,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Vanilla ice cream with chunks of edible cookie dough",
-        "category": "Cookie",
         "cuisineImg": "https://celebratingsweets.com/wp-content/uploads/2023/04/Cookie-Dough-Ice-Cream-7.jpg",
-        "cuisineId": "IC015"
+        "cuisineId": "IC015",
+        "spicyLevel":"None"
       },
       {
         "id": 16,
@@ -2273,9 +2273,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free matcha green tea ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://static.toiimg.com/thumb/57810182.cms?imgsize=1796105&width=800&height=800",
-        "cuisineId": "IC016"
+        "cuisineId": "IC016",
+        "spicyLevel":"None"
       },
       {
         "id": 17,
@@ -2284,9 +2284,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Creamy butterscotch flavored ice cream",
-        "category": "Classic",
         "cuisineImg": "https://twosugarbugs.com/wp-content/uploads/2023/06/butterscotch-ice-cream-cone-topping.jpg",
-        "cuisineId": "IC017"
+        "cuisineId": "IC017",
+        "spicyLevel":"None"
       },
       {
         "id": 18,
@@ -2295,9 +2295,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Vanilla ice cream with black cherry swirls",
-        "category": "Fruit",
         "cuisineImg": "https://barefeetinthekitchen.com/wp-content/uploads/2023/05/Black-Cherry-Ice-Cream-BFK-8-1-of-1-732x1024.jpg",
-        "cuisineId": "IC018"
+        "cuisineId": "IC018",
+        "spicyLevel":"None"
       },
       {
         "id": 19,
@@ -2306,9 +2306,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free peanut butter ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://addictedtodates.com/wp-content/uploads/2022/06/vegan-peanut-butter-ice-cream.jpg",
-        "cuisineId": "IC019"
+        "cuisineId": "IC019",
+        "spicyLevel":"None"
       },
       {
         "id": 20,
@@ -2317,9 +2317,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Vanilla ice cream with raspberry sauce swirls",
-        "category": "Fruit",
         "cuisineImg": "https://i0.wp.com/lovetobeinthekitchen.com/wp-content/uploads/2022/07/Rapberry-Swirl-Ice-Cream-RESIZED.jpg?resize=650%2C1064&ssl=1",
-        "cuisineId": "IC020"
+        "cuisineId": "IC020",
+        "spicyLevel":"None"
       },
       {
         "id": 21,
@@ -2328,9 +2328,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free coffee chocolate ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr2e88oZP0BEAmhMi62j9GxKR7C38qXa3xBg&s",
-        "cuisineId": "IC021"
+        "cuisineId": "IC021",
+        "spicyLevel":"None"
       },
       {
         "id": 22,
@@ -2339,9 +2339,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Caramel ice cream with chocolate covered toffee pieces",
-        "category": "Caramel",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVN4Z53YB_qau5b7Iysx_xkwz7upS2RzYNrw&s",
-        "cuisineId": "IC022"
+        "cuisineId": "IC022",
+        "spicyLevel":"None"
       },
       {
         "id": 23,
@@ -2350,9 +2350,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free blueberry ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGnANTyfrSK3VNJFnHl4oxvN_EGeKyxAeKJw&s",
-        "cuisineId": "IC023"
+        "cuisineId": "IC023",
+        "spicyLevel":"None"
       },
       {
         "id": 24,
@@ -2361,9 +2361,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Coffee-flavored ice cream with mascarpone swirls and ladyfinger pieces",
-        "category": "Coffee",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpYipSezXyOQ4LYjCsFhIrRTCGsJ6lt1YKeA&s",
-        "cuisineId": "IC024"
+        "cuisineId": "IC024",
+        "spicyLevel":"None"
       },
       {
         "id": 25,
@@ -2372,9 +2372,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free vanilla ice cream made with real vanilla beans",
-        "category": "Vegan",
         "cuisineImg": "https://www.theroastedroot.net/wp-content/uploads/2023/06/dairy-free-vanilla-ice-cream-8.jpg",
-        "cuisineId": "IC025"
+        "cuisineId": "IC025",
+        "spicyLevel":"None"
       },
       {
         "id": 26,
@@ -2383,9 +2383,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Sweet blue and pink cotton candy flavored ice cream",
-        "category": "Novelty",
         "cuisineImg": "https://www.bakingbeauty.net/wp-content/uploads/2020/07/cotton-candy-ice-cream-2.jpg",
-        "cuisineId": "IC026"
+        "cuisineId": "IC026",
+        "spicyLevel":"None"
       },
       {
         "id": 27,
@@ -2394,9 +2394,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free caramel ice cream with sea salt",
-        "category": "Vegan",
         "cuisineImg": "https://images.unsplash.com/photo-1560008581-09826d1de69e",
-        "cuisineId": "IC027"
+        "cuisineId": "IC027",
+        "spicyLevel":"None"
       },
       {
         "id": 28,
@@ -2405,9 +2405,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Fun bubblegum flavored ice cream with colorful candy pieces",
-        "category": "Novelty",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbTaSwabr3qFUYcMcx71IJzBHT-JZf0Dj2w&s",
-        "cuisineId": "IC028"
+        "cuisineId": "IC028",
+        "spicyLevel":"None"
       },
       {
         "id": 29,
@@ -2416,9 +2416,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free hazelnut flavored ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBxy5kC2dQ4BOOB2tS_iJJ5Mowhlw7gM1Qdg&s",
-        "cuisineId": "IC029"
+        "cuisineId": "IC029",
+        "spicyLevel":"None"
       },
       {
         "id": 30,
@@ -2427,9 +2427,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Japanese matcha green tea flavored ice cream",
-        "category": "Tea",
         "cuisineImg": "https://images.unsplash.com/photo-1550583724-b2692b85b150",
-        "cuisineId": "IC030"
+        "cuisineId": "IC030",
+        "spicyLevel":"None"
       },
       {
         "id": 31,
@@ -2438,9 +2438,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free raspberry sorbet",
-        "category": "Vegan",
         "cuisineImg": "https://wemadethisvegan.com/wp-content/uploads/2021/05/vegan-raspberry-sorbet-1.jpg",
-        "cuisineId": "IC031"
+        "cuisineId": "IC031",
+        "spicyLevel":"None"
       },
       {
         "id": 32,
@@ -2449,9 +2449,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "https://www.onesweetmess.com/wp-content/uploads/2013/11/Funfetti-Cake-Batter-Oreo-Ice-Cream-www.themessybakerblog.com-8980.jpg",
-        "category": "Novelty",
         "cuisineImg": "https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg",
-        "cuisineId": "IC032"
+        "cuisineId": "IC032",
+        "spicyLevel":"None"
       },
       {
         "id": 33,
@@ -2460,7 +2460,6 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free vanilla ice cream with vegan chocolate chips",
-        "category": "Vegan",
         "cuisineImg": "https://images.unsplash.com/photo-1576186726115-4d51596775d1",
         "cuisineId": "IC033"
       },
@@ -2471,9 +2470,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Warm cinnamon flavored ice cream",
-        "category": "Spice",
         "cuisineImg": "https://images.unsplash.com/photo-1560008581-09826d1de69e",
-        "cuisineId": "IC034"
+        "cuisineId": "IC034",
+        "spicyLevel":"None"
       },
       {
         "id": 35,
@@ -2482,9 +2481,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free mango sorbet",
-        "category": "Vegan",
         "cuisineImg": "https://images.unsplash.com/photo-1551751299-1b51cab2694c",
-        "cuisineId": "IC035"
+        "cuisineId": "IC035",
+        "spicyLevel":"None"
       },
       {
         "id": 36,
@@ -2493,9 +2492,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Red velvet cake flavored ice cream with cream cheese swirls",
-        "category": "Cake",
         "cuisineImg": "https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2021/10/Red-velvet-ice-cream-hero-05.jpg",
-        "cuisineId": "IC036"
+        "cuisineId": "IC036",
+        "spicyLevel":"None"
       },
       {
         "id": 37,
@@ -2504,9 +2503,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free coconut ice cream with chocolate swirls",
-        "category": "Vegan",
         "cuisineImg": "https://images.unsplash.com/photo-1576186726115-4d51596775d1",
-        "cuisineId": "IC037"
+        "cuisineId": "IC037",
+        "spicyLevel":"None"
       },
       {
         "id": 38,
@@ -2515,9 +2514,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Vanilla ice cream with praline pecans and caramel swirls",
-        "category": "Nut",
         "cuisineImg": "https://images.unsplash.com/photo-1563805042-7684c019e1cb",
-        "cuisineId": "IC038"
+        "cuisineId": "IC038",
+        "spicyLevel":"None"
       },
       {
         "id": 39,
@@ -2526,9 +2525,9 @@
         "servesFor": 1,
         "veganFriendly": true,
         "cuisineDescription": "Dairy-free coffee flavored ice cream",
-        "category": "Vegan",
         "cuisineImg": "https://images.unsplash.com/photo-1570197788417-0e82375c9371",
-        "cuisineId": "IC039"
+        "cuisineId": "IC039",
+        "spicyLevel":"None"
       },
       {
         "id": 40,
@@ -2537,9 +2536,9 @@
         "servesFor": 1,
         "veganFriendly": false,
         "cuisineDescription": "Italian style ice cream with cherry, pistachio and chocolate layers",
-        "category": "Specialty",
         "cuisineImg": "https://images.unsplash.com/photo-1563805042-7684c019e1cb",
-        "cuisineId": "IC040"
+        "cuisineId": "IC040",
+        "spicyLevel":"None"
       }
     ]
   }

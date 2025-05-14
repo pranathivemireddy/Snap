@@ -1,21 +1,52 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import data from "../Data/data.json";
 import { useState } from "react";
+import { useCart } from "../Components/CartContext.jsx";
+
 function Pizzarity() {
   const pizzas = data[0]?.pizzas || [];
+  const navigate=useNavigate()
+  const { addToCart } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
   const [vegFilter, setVegFilter] = useState(false);
   const [nonVegFilter, setNonVegFilter] = useState(false);
+  const [quantities, setQuantities] = useState({});
   const filteredPizzas = pizzas.filter((pizza) =>{
     const matchesSearch = pizza.cuisineName.toLowerCase().includes(searchTerm.toLowerCase());
     const showVeg = vegFilter && pizza.veganFriendly;
     const showNonVeg = nonVegFilter && !pizza.veganFriendly;
     if (!vegFilter && !nonVegFilter) return matchesSearch;  
     return matchesSearch && (showVeg || showNonVeg);  
-  })
+  });
+  const handleIncrement = (wrapId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [wrapId]: (prev[wrapId] || 0) + 1,
+    }));
+  };
+
+  const handleDecrement = (wrapId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [wrapId]: Math.max((prev[wrapId] || 0) - 1, 0),
+    }));
+  };
+  const handleAddToCart = () => {
+    const selectedItems = pizzas
+      .filter((pizza) => (quantities[pizza.id] || 0) > 0)
+      .map((pizza) => ({
+        ...pizza,
+        quantity: quantities[pizza.id],
+      }));
+
+    selectedItems.forEach((item) => addToCart(item));
+
+    navigate("/cart"); 
+  };
+
   return (
     <>
-      <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10 shadow-sm">
+      <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10">
         <input
           type="text"
           placeholder="Search pizzas..."
@@ -47,7 +78,7 @@ function Pizzarity() {
           {filteredPizzas.map((pizza) => (
             <div
               key={pizza.id}
-              className="flex flex-col items-center rounded-lg p-4 bg-white relative"
+              className="flex flex-col items-center rounded-lg p-4 bg-white relative shadow-sm"
             >
               <div className="absolute top-2 right-2">
                 {pizza.veganFriendly ? (
@@ -61,7 +92,7 @@ function Pizzarity() {
                 )}
               </div>
               <div className="relative">
-              <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm ">
+              <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm " onClick={() => handleDecrement(pizza.id)}>
                   -
                 </button>
                 <img
@@ -72,9 +103,8 @@ function Pizzarity() {
                     e.target.src =
                       "https://via.placeholder.com/100x100?text=pizza";
                     e.target.onerror = null;
-                  }}
-                />
-                <button className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600">
+                  }}/>
+                <button className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600" onClick={() => handleIncrement(pizza.id)}>
                   +
                 </button>
               </div>
@@ -83,6 +113,7 @@ function Pizzarity() {
                 {pizza.cuisineName}
               </h3>
               <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">₹{pizza.cuisinePrice}</h3>
+              <h3 className='mt-2 font-semibold text-gray-800 text-center text-sm'>Quantity:{quantities[pizza.id]||0}</h3>
               </div>
             </div>
           ))}
@@ -100,7 +131,20 @@ function Pizzarity() {
             Back
           </Link>
         </button>
-        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition">
+        <button
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
+          onClick={() => {
+  pizzas.forEach((pizza) => {
+    const qty = quantities[pizza.id] || 0;
+    if (qty > 0) {
+      addToCart({...pizza,
+        quantity: qty,
+        cuisinePrice: parseFloat(pizza.cuisinePrice),});
+    }
+  });
+  navigate("/cart");
+}}
+        >
           Go to Cart
         </button>
       </div>

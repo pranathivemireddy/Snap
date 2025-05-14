@@ -1,42 +1,48 @@
 import { Link, useNavigate } from "react-router-dom";
 import data from "../Data/data.json";
 import { useState } from "react";
-function Wrapeats() {
-  const wraps = data[0]?.wraps || [];
+import { useCart } from "../Components/CartContext.jsx";
+
+
+function Biryanispot({props}) {
+  const { addToCart } = useCart();
+  const biryanis = data[0]?.biryanis || [];
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [vegFilter, setVegFilter] = useState(false);
   const [nonVegFilter, setNonVegFilter] = useState(false);
   const [quantities, setQuantities] = useState({});
-  const filteredwraps = wraps.filter((wrap) => {
-    const matchesSearch = wrap.cuisineName
+  const filteredBiryanis = biryanis.filter((biryani) => {
+    const matchesSearch = biryani.cuisineName
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    const showVeg = vegFilter && wrap.veganFriendly;
-    const showNonVeg = nonVegFilter && !wrap.veganFriendly;
+
+    const showVeg = vegFilter && biryani.veganFriendly;
+    const showNonVeg = nonVegFilter && !biryani.veganFriendly;
+
     if (!vegFilter && !nonVegFilter) return matchesSearch;
+
     return matchesSearch && (showVeg || showNonVeg);
   });
-  const handleIncrement = (wrapId) => {
+  const handleIncrement = (biryaniId) => {
     setQuantities((prev) => ({
       ...prev,
-      [wrapId]: (prev[wrapId] || 0) + 1,
+      [biryaniId]: (prev[biryaniId] || 0) + 1,
     }));
   };
-
-  // Decrement quantity (won't go below 0)
-  const handleDecrement = (wrapId) => {
+    const handleDecrement = (biryaniId) => {
     setQuantities((prev) => ({
       ...prev,
-      [wrapId]: Math.max((prev[wrapId] || 0) - 1, 0),
+      [biryaniId]: Math.max((prev[biryaniId] || 0) - 1, 0),
     }));
   };
-
+  
   return (
     <>
-      <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10 shadow-sm">
+      <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10">
         <input
           type="text"
-          placeholder="Search wrap's..."
+          placeholder="Search biryanis..."
           className="border px-3 py-1 rounded flex-grow max-w-md"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -61,19 +67,21 @@ function Wrapeats() {
 
       <div className="p-4 pb-20">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          Our Wraps Collection
+          Our Biryani Collection
         </h2>
-        {filteredwraps.length === 0 && (
-          <p className="text-center text-gray-500">No wraps found</p>
+
+        {filteredBiryanis.length === 0 && (
+          <p className="text-center text-gray-500">No biryanis found</p>
         )}
+
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredwraps.map((wrap) => (
+          {filteredBiryanis.map((biryani) => (
             <div
-              key={wrap.id}
-              className="flex flex-col items-center rounded-lg p-4 bg-white relative"
+              key={biryani.id}
+              className="flex flex-col items-center rounded-lg p-4 bg-white relative shadow-sm"
             >
               <div className="absolute top-2 right-2">
-                {wrap.veganFriendly ? (
+                {biryani.veganFriendly ? (
                   <div className="flex items-center justify-center w-6 h-6 bg-white border-2 border-green-600 rounded-full">
                     <div className="w-3 h-3 bg-green-600 rounded-full"></div>
                   </div>
@@ -83,48 +91,46 @@ function Wrapeats() {
                   </div>
                 )}
               </div>
+
               <div className="relative">
                 <button
                   className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm"
-                  onClick={() => handleDecrement(wrap.id)}
+                  onClick={()=>handleDecrement(biryani.id)}
                 >
                   -
                 </button>
                 <img
-                  src={wrap.cuisineImg}
-                  alt={wrap.cuisineName}
+                  src={biryani.cuisineImg}
+                  alt={biryani.cuisineName}
                   className="w-24 h-24 object-cover rounded-full border"
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/100x100?text=Wrap";
+                      "https://via.placeholder.com/100x100?text=Biryani";
                     e.target.onerror = null;
                   }}
                 />
-                <div className="absolute bottom-0 right-0 flex items-center gap-1">
-                  <span className="bg-white text-black text-sm px-1">
-                    {quantities[wrap.id] || 0}
-                  </span>
-                  <button
-                    className="bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600"
-                    onClick={() => handleIncrement(wrap.id)}
-                  >
-                    +
-                  </button>
-                </div>
+                <button
+                  className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600"
+                  onClick={()=>handleIncrement(biryani.id)}
+                >
+                  +
+                </button>
               </div>
-              <div>
-                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
-                  {wrap.cuisineName}
+              <div className="text-center mt-2">
+                <h3 className="font-semibold text-gray-800 text-sm">
+                  {biryani.cuisineName}
                 </h3>
-                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
-                  ₹{Math.ceil(wrap.cuisinePrice * 10)}
+                <h3 className="font-semibold text-gray-800 text-sm">
+                  ₹{biryani.cuisinePrice}
                 </h3>
+                <span>Quantity:{quantities[biryani.id] || 0}</span>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div className="flex fixed bottom-0 left-0 w-full justify-around bg-white p-4  shadow-lg">
+
+      <div className="flex fixed bottom-0 left-0 w-full justify-around bg-white p-4 shadow-lg">
         <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
           <Link to="/" className="text-white no-underline">
             Home
@@ -135,11 +141,25 @@ function Wrapeats() {
             Back
           </Link>
         </button>
-        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition" onClick={() => navigate('/cart')}>
+        <button
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
+          onClick={() => {
+  biryanis.forEach((biryani) => {
+    const qty = quantities[biryani.id] || 0;
+    if (qty > 0) {
+      addToCart({...biryani,
+        quantity: qty,
+        cuisinePrice: parseFloat(biryani.cuisinePrice),});
+    }
+  });
+  navigate("/cart");
+}}
+        >
           Go to Cart
         </button>
       </div>
     </>
   );
 }
-export default Wrapeats;
+
+export default Biryanispot;
