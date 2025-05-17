@@ -9,41 +9,39 @@ function Stalls() {
     "🍔The Burger Vault": "/burgervault",
     "🌯WrapEats": "/wrapeats",
     "🧋Sippity": "/sippity",
-    "🍦Snoozy Scoops": "/snoozyscoops"
+    "🍦Snoozy Scoops": "/snoozyscoops",
   };
-  const bgColors = [
-    "bg-amber-100",
-    "bg-amber-200",
-    "bg-amber-300",
-    "bg-amber-400",
-    "bg-amber-500",
-    "bg-amber-600"
+
+  const images = [
+    "/biryani.jpg",
+    "/pizza.jpg",
+    "/burger.jpg",
+    "/wrap.jpg",
+    "/sippity.jpg",
+    "/icecream.jpg",
   ];
-  
-  const handleClick = (e) => {
-    const clickedText = e.target.innerText;
-    const path = pathMap[clickedText];
+
+  const handleClick = (label) => {
+    const path = pathMap[label];
     if (path) {
       navigate(path);
-    } else {
-      console.warn("No route mapped for:", clickedText);
     }
   };
 
   return (
-    <>
-      <div className="stalls flex flex-col gap-4.5 mt-35">
-        {Object.keys(pathMap).map((label, idx) => (
-          <div
-            key={idx}
-            className={`h-10 ${bgColors[idx % bgColors.length]} rounded-s-lg rounded-r-lg text-center cursor-pointer p-2`}
-            onClick={handleClick}
-          >
-            {label}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 mt-8">
+      {Object.entries(pathMap).map(([label, path], idx) => (
+        <div
+          key={label}
+          onClick={() => handleClick(label)}
+          className="relative h-20 rounded-xl bg-cover bg-center shadow-md cursor-pointer hover:scale-105 transition-transform duration-200"
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center">
+            <span className="text-white text-lg font-semibold">{label}</span>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ import Sippity from './Pages/Sippity'
 import Snoozyscoops from './Pages/Snoozyscoops'
 import Cart from './Components/Cart'
 import Payment from './Components/Payment'
-// import Admin from '../FrontEnd/Admin/admin'
+import Admin from '../Admin/admin'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -28,7 +28,7 @@ function App() {
           <Route path='/snoozyscoops' element={<Snoozyscoops/>}/>
           <Route path='cart' element={<Cart/>}/>
           <Route path='/payment' element={<Payment/>}/>
-          {/* <Route path='/admin' element={<Admin/>}/> */}
+          <Route path='/admin' element={<Admin/>}/>
         </Routes>
     </Router>
     </>
