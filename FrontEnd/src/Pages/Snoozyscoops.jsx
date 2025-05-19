@@ -1,24 +1,22 @@
-import { Link,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import data from "../Data/data.json";
 import { useState } from "react";
 import { useCart } from "../Components/CartContext.jsx";
 function Snoozyscoops() {
   const snoozyscoops = data[0]?.icecreams || [];
-  const navigate=useNavigate()
-  const {addToCart}=useCart()
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
-  const [quantities,setQuantities]=useState({})
+  const [quantities, setQuantities] = useState({});
   const filteredSnoozyscoops = snoozyscoops.filter((icecream) =>
-  icecream.cuisineName.toLowerCase().includes(searchTerm.toLowerCase()
-));
-const handleIncrement = (icecreamId) => {
+    icecream.cuisineName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const handleIncrement = (icecreamId) => {
     setQuantities((prev) => ({
       ...prev,
       [icecreamId]: (prev[icecreamId] || 0) + 1,
     }));
   };
-
-  // Decrement quantity (won't go below 0)
   const handleDecrement = (icecreamId) => {
     setQuantities((prev) => ({
       ...prev,
@@ -34,7 +32,9 @@ const handleIncrement = (icecreamId) => {
           placeholder="Search icecreams..."
           className="border px-3 py-1 rounded flex-grow max-w-md"
           value={searchTerm}
-          onChange={(e)=>{setSearchTerm(e.target.value)}}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
         />
       </div>
 
@@ -42,38 +42,49 @@ const handleIncrement = (icecreamId) => {
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           Our Icecreams Collection
         </h2>
-        {filteredSnoozyscoops.length===0&&(<p className="text-center text-gray-500">No icecreams found</p>)}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredSnoozyscoops.length === 0 && (
+          <p className="text-center text-gray-500">No icecreams found</p>
+        )}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {filteredSnoozyscoops.map((icecream) => (
             <div
               key={icecream.id}
               className="flex flex-col items-center rounded-lg p-4 bg-white shadow-sm"
             >
-              
               <div className="relative">
-              <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm " onClick={()=>handleDecrement(icecream.id)}>
+                <button
+                  className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm "
+                  onClick={() => handleDecrement(icecream.id)}
+                >
                   -
                 </button>
                 <img
                   src={icecream.cuisineImg}
                   alt={icecream.cuisineName}
-                  className="w-24 h-24 object-cover rounded-full border"
+                  className="w-24 h-24 object-cover rounded-full border lg:rounded-lg"
                   onError={(e) => {
                     e.target.src =
                       "https://via.placeholder.com/100x100?text=Icecream";
                     e.target.onerror = null;
                   }}
                 />
-                <button className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600" onClick={()=>handleIncrement(icecream.id)}>
+                <button
+                  className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600"
+                  onClick={() => handleIncrement(icecream.id)}
+                >
                   +
                 </button>
               </div>
               <div>
-              <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
-                {icecream.cuisineName}
-              </h3>
-              <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">₹{icecream.cuisinePrice}</h3>
-              <h3  className="mt-2 font-semibold text-gray-800 text-center text-sm">Quantity:{quantities[icecream.id]||0}</h3>
+                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
+                  {icecream.cuisineName}
+                </h3>
+                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
+                  ₹{icecream.cuisinePrice}
+                </h3>
+                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
+                  Quantity:{quantities[icecream.id] || 0}
+                </h3>
               </div>
             </div>
           ))}
@@ -94,16 +105,18 @@ const handleIncrement = (icecreamId) => {
         <button
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
           onClick={() => {
-  snoozyscoops.forEach((icecream) => {
-    const qty = quantities[icecream.id] || 0;
-    if (qty > 0) {
-      addToCart({...icecream,
-        quantity: qty,
-        cuisinePrice: parseFloat(icecream.cuisinePrice),});
-    }
-  });
-  navigate("/cart");
-}}
+            snoozyscoops.forEach((icecream) => {
+              const qty = quantities[icecream.id] || 0;
+              if (qty > 0) {
+                addToCart({
+                  ...icecream,
+                  quantity: qty,
+                  cuisinePrice: parseFloat(icecream.cuisinePrice),
+                });
+              }
+            });
+            navigate("/cart");
+          }}
         >
           Go to Cart
         </button>
