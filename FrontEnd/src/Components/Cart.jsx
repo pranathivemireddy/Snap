@@ -1,13 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from "../Components/CartContext";
 
 function Cart() {
   const { cartItems } = useCart();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const totalAmount = cartItems.reduce(
     (sum, item) => sum + item.cuisinePrice * item.quantity,
     0
   );
+
+  const previousRoute = location.state?.from || "/stalls";
 
   return (
     <div className="flex flex-col h-screen">
@@ -41,13 +45,21 @@ function Cart() {
           </>
         )}
       </div>
+
+      {/* Fixed footer */}
       <div className="fixed bottom-0 left-0 w-full flex justify-around bg-white p-4 shadow-sm z-10">
         <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">
-          <Link to="/" className="text-white no-underline">Home</Link>
+          <Link to="/stalls" className="text-white no-underline">Home</Link>
         </button>
-        <button className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded">
-          <Link to="/stalls" className="text-white no-underline">Back</Link>
+
+        {/* ✅ Back to previous page */}
+        <button
+          className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded"
+          onClick={() => navigate(previousRoute)}
+        >
+          Back
         </button>
+
         <button className="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded">
           <Link to="/payment">Proceed To Payment</Link>
         </button>
@@ -55,5 +67,4 @@ function Cart() {
     </div>
   );
 }
-
 export default Cart;

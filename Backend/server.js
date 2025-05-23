@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./Config/dbconnect');
 const adminRouter = require('./Router/adminRouter');
-
+const clientRoute = require('./Router/clientRouter');
 dotenv.config();
 const app = express();
 
@@ -17,7 +17,8 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/admin', adminRouter); // e.g., http://localhost:3214/admin/allcategories
+app.use('/admin', adminRouter); // e.g., http://localhost:5000/adimin/allcategories
+app.use('/client', clientRoute); // e.g., http://localhost:5000/client/items/biryanis
 connectDB()
   .then(async () => {
       app.listen(port, () => {

@@ -1,67 +1,39 @@
-import { useState } from "react";
-import Biryanispot from "../src/Pages/Biryanispot";
-import Pizzarity from "../src/Pages/Pizzarity";
-import BurgerVault from "../src/Pages/BurgerVault";
-import Wrapeats from "../src/Pages/Wrapeats";
-import Sippity from "../src/Pages/Sippity";
-import Snoozyscoops from "../src/Pages/Snoozyscoops";
-// Import other category components when you create them
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function Sidebar() {
-  const [selectedCategory, setSelectedCategory] = useState("");
+function Sidebar({ setSelectedCategory }) {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/admin/allcategories')
+      .then(res => {
+        console.log("Fetched categories:", res.data);
+        setCategories(res.data);
+      })
+      .catch(err => {
+        console.error("Failed to fetch categories", err);
+        setCategories([]); 
+      });
+  }, []);
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <div className="sidebar w-24 lg:w-xs h-lvh bg-amber-100 text-center text-xl font-bold">
-        <div className="mt-8">Categories</div>
-        <div className="flex flex-col mt-8 gap-8 p-3.5 text-black rounded-md">
+    <div className="sidebar w-24 lg:w-60 h-lvh bg-amber-100 text-center text-xl font-bold flex flex-col">
+      <div className="mt-6">Categories</div>
+      <div className="flex-1 overflow-hidden mt-3">
+        {categories.map((cat, index) => (
           <div
-            className="p-6 rounded bg-slate-50 cursor-pointer hover:bg-slate-200"
-            onClick={() => setSelectedCategory("biryani")}
+            key={index}
+            className="p-3 rounded cursor-pointer"
+            onClick={() => setSelectedCategory(cat.name.toLowerCase())}
           >
-            Biryanispot
+            <img
+              src={cat.image_url}
+              alt={cat.name}
+              className="w-18 h-18 mx-auto object-cover rounded-full"
+            />
+            <p className="text-sm mt-1">{cat.name}</p>
           </div>
-          <div
-            className="p-6 rounded bg-slate-50 cursor-pointer hover:bg-slate-200"
-            onClick={() => setSelectedCategory("pizza")}
-          >
-            Pizzarity
-          </div>
-          <div
-            className="p-6 rounded bg-slate-50"
-            onClick={() => setSelectedCategory("burger")}
-          >
-            BurgerVault
-          </div>
-          <div
-            className="p-6 rounded bg-slate-50"
-            onClick={() => setSelectedCategory("wrap")}
-          >
-            Wrapeats
-          </div>
-          <div
-            className="p-6 rounded bg-slate-50"
-            onClick={() => setSelectedCategory("milkshake")}
-          >
-            Sippity
-          </div>
-          <div
-            className="p-6 rounded bg-slate-50"
-            onClick={() => setSelectedCategory("icecream")}
-          >
-            Snoozyscoops
-          </div>
-        </div>
-      </div>
-
-      <div className="flex-1 p-8">
-        {selectedCategory === "biryani" && <Biryanispot />}
-        {selectedCategory === "pizza" && <Pizzarity />}
-        {selectedCategory === "burger" && <BurgerVault />}
-        {selectedCategory === "wrap" && <Wrapeats />}
-        {selectedCategory === "milkshake" && <Sippity />}
-        {selectedCategory === "icecream" && <Snoozyscoops />}
+        ))}
       </div>
     </div>
   );

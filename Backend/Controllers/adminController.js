@@ -6,7 +6,7 @@ const getCategories = async (req, res) => {
         if (categories.length === 0) {
             return res.status(404).json({ success: false, message: 'No Categories found' });
         }
-        res.status(200).json({ success: true, categories });
+        res.status(200).json(categories );
     } catch (error) {
         res.status(400).json({ success: false, message: 'Failed to get the Categories', error });
     }

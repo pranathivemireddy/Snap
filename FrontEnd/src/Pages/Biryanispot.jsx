@@ -1,165 +1,172 @@
-import { Link, useNavigate } from "react-router-dom";
-import data from "../Data/data.json";
-import { useState } from "react";
-import { useCart } from "../Components/CartContext.jsx";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import customhook from "../Hooks/customhook";
+import { useCart } from "../Components/CartContext";
+import ItemCard from "../Components/Itemcard";
+import { ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import EditForm from "../Components/Editform";
 
-
-function Biryanispot({props}) {
+const Biryanispot = () => {
   const { addToCart } = useCart();
-  const biryanis = data[0]?.biryanis || [];
+  const location = useLocation();
+  const isAdmin = location.pathname.includes("admin");
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [vegFilter, setVegFilter] = useState(false);
-  const [nonVegFilter, setNonVegFilter] = useState(false);
-  const [quantities, setQuantities] = useState({});
-  const filteredBiryanis = biryanis.filter((biryani) => {
-    const matchesSearch = biryani.cuisineName
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+  const [editingItem, setEditingItem] = useState(null);
 
-    const showVeg = vegFilter && biryani.veganFriendly;
-    const showNonVeg = nonVegFilter && !biryani.veganFriendly;
-
-    if (!vegFilter && !nonVegFilter) return matchesSearch;
-
-    return matchesSearch && (showVeg || showNonVeg);
-  });
-  const handleIncrement = (biryaniId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [biryaniId]: (prev[biryaniId] || 0) + 1,
-    }));
+  const handleEdit = (item) => {
+    setEditingItem(item);
+    document.body.style.overflow = "hidden";
   };
-    const handleDecrement = (biryaniId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [biryaniId]: Math.max((prev[biryaniId] || 0) - 1, 0),
-    }));
+
+  const handleUpdate = async (updatedData) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/admin/items/${editingItem._id}`,
+        updatedData
+      );
+      setItems((prev) =>
+        prev.map((i) => (i._id === editingItem._id ? res.data : i))
+      );
+      setEditingItem(null);
+      document.body.style.overflow = "auto";
+      toast.success("Item updated successfully");
+    } catch (error) {
+      toast.error("Update failed");
+    }
   };
-  
+
+  const handleDelete = async (id, name) => {
+    if (window.confirm(`Delete ${name}?`)) {
+      await axios.delete(`http://localhost:5000/admin/items/${id}`);
+      setItems((prev) => prev.filter((i) => i._id !== id));
+      toast.success(`Deleted ${name}`);
+    }
+  };
+
+  const {
+    filteredItems,
+    searchTerm,
+    setSearchTerm,
+    vegFilter,
+    nonVegFilter,
+    toggleVeg,
+    toggleNonVeg,
+    quantities,
+    increment,
+    decrement,
+    setItems,
+  } = customhook("http://localhost:5000/client/items/biryanis");
+
+  // restore scroll on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <>
-      <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10">
+      <ToastContainer />
+      {/* Filters */}
+      <div className="flex gap-2 p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
         <input
           type="text"
-          placeholder="Search biryanis..."
-          className="border px-3 py-1 rounded flex-grow max-w-md"
+          className="border px-2 py-0.5 rounded flex-grow max-w-md"
+          placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button
-          className={`border px-3 py-1 rounded transition ${
-            vegFilter ? "bg-green-500 text-white" : "bg-white text-green-500"
+          className={`border px-3 py-1 rounded ${
+            vegFilter ? "bg-green-500 text-white" : "text-green-500"
           }`}
-          onClick={() => setVegFilter(!vegFilter)}
+          onClick={toggleVeg}
         >
           Veg
         </button>
         <button
-          className={`border px-3 py-1 rounded transition ${
-            nonVegFilter ? "bg-red-500 text-white" : "bg-white text-red-500"
+          className={`border px-3 py-1 rounded ${
+            nonVegFilter ? "bg-red-500 text-white" : "text-red-500"
           }`}
-          onClick={() => setNonVegFilter(!nonVegFilter)}
+          onClick={toggleNonVeg}
         >
           Non Veg
         </button>
       </div>
 
-      <div className="p-4 pb-20">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          Our Biryani Collection
-        </h2>
-
-        {filteredBiryanis.length === 0 && (
-          <p className="text-center text-gray-500">No biryanis found</p>
-        )}
-
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredBiryanis.map((biryani) => (
-            <div
-              key={biryani.id}
-              className="flex flex-col items-center rounded-lg p-4 bg-white relative shadow-sm"
+      {/* Edit Modal */}
+      {editingItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="relative bg-white dark:bg-gray-900 text-black dark:text-white rounded-lg shadow-lg p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            {/* ❌ Close button */}
+            <button
+              className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold"
+              onClick={() => {
+                setEditingItem(null);
+                document.body.style.overflow = "auto";
+              }}
             >
-              <div className="absolute top-2 right-2">
-                {biryani.veganFriendly ? (
-                  <div className="flex items-center justify-center w-6 h-6 bg-white border-2 border-green-600 rounded-full">
-                    <div className="w-3 h-3 bg-green-600 rounded-full"></div>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center w-6 h-6 bg-white border-2 border-red-600 rounded-sm">
-                    <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[8px] border-b-red-600 -mt-[2px]"></div>
-                  </div>
-                )}
-              </div>
+              &times;
+            </button>
 
-              <div className="relative">
-                <button
-                  className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm"
-                  onClick={()=>handleDecrement(biryani.id)}
-                >
-                  -
-                </button>
-                <img
-                  src={biryani.cuisineImg}
-                  alt={biryani.cuisineName}
-                  className="w-24 h-24 object-cover rounded-full border"
-                  onError={(e) => {
-                    e.target.src =
-                      "https://via.placeholder.com/100x100?text=Biryani";
-                    e.target.onerror = null;
-                  }}
-                />
-                <button
-                  className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600"
-                  onClick={()=>handleIncrement(biryani.id)}
-                >
-                  +
-                </button>
-              </div>
-              <div className="text-center mt-2">
-                <h3 className="font-semibold text-gray-800 text-sm">
-                  {biryani.cuisineName}
-                </h3>
-                <h3 className="font-semibold text-gray-800 text-sm">
-                  ₹{biryani.cuisinePrice}
-                </h3>
-                <span>Quantity:{quantities[biryani.id] || 0}</span>
-              </div>
-            </div>
-          ))}
+            <EditForm
+              item={editingItem}
+              onSubmit={handleUpdate}
+              onCancel={() => {
+                setEditingItem(null);
+                document.body.style.overflow = "auto";
+              }}
+            />
+          </div>
         </div>
+      )}
+
+      {/* Item Grid */}
+      <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {filteredItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
+            quantity={quantities[item.id]}
+            increment={increment}
+            decrement={decrement}
+            isAdmin={isAdmin}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        ))}
       </div>
 
-      <div className="flex fixed bottom-0 left-0 w-full justify-around bg-white p-4 shadow-lg">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
-          <Link to="/" className="text-white no-underline">
-            Home
-          </Link>
-        </button>
-        <button className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition">
-          <Link to="/stalls" className="text-white no-underline">
-            Back
-          </Link>
-        </button>
-        <button
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
-          onClick={() => {
-  biryanis.forEach((biryani) => {
-    const qty = quantities[biryani.id] || 0;
-    if (qty > 0) {
-      addToCart({...biryani,
-        quantity: qty,
-        cuisinePrice: parseFloat(biryani.cuisinePrice),});
-    }
-  });
-  navigate("/cart");
-}}
-        >
-          Go to Cart
-        </button>
-      </div>
+      {/* Bottom Cart Actions (only for customers) */}
+      {!isAdmin && (
+        <div className="fixed bottom-0 left-0 w-full flex justify-around bg-white dark:bg-gray-900 p-4 shadow-lg z-20">
+          <button className="bg-gray-500 text-white px-4 py-2 rounded">
+            <Link to="/stalls">Back</Link>
+          </button>
+          <button
+            className="bg-green-600 text-white px-4 py-2 rounded"
+            onClick={() => {
+              filteredItems.forEach((item) => {
+                const qty = quantities[item.id] || 0;
+                if (qty > 0) {
+                  addToCart({
+                    ...item,
+                    quantity: qty,
+                    cuisinePrice: parseFloat(item.cuisinePrice),
+                  });
+                }
+              });
+              navigate("/cart", { state: { from: location.pathname } });
+            }}
+          >
+            Go to Cart
+          </button>
+        </div>
+      )}
     </>
   );
-}
+};
 
 export default Biryanispot;

@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 # components
-Filter.jsx
 FetchedData.jsx
 Qualitycontrols.jsx
 Search.jsx

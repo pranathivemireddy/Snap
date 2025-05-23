@@ -1,115 +1,154 @@
-import { Link,useNavigate } from "react-router-dom";
-import data from "../Data/data.json";
-import { useState } from "react";
-import { useCart } from "../Components/CartContext.jsx";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import customhook from "../Hooks/customhook";
+import { useCart } from "../Components/CartContext";
+import ItemCard from "../Components/Itemcard";
+import { ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import EditForm from "../Components/Editform";
 
-function Sippity() {
-  const sippity = data[0]?.milkshakes || [];
-  const navigate=useNavigate();
-  const {addToCart}=useCart();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [quantities,setQuantities]=useState({});
-  const filteredSippity = sippity.filter((milkshake) => 
-    milkshake.cuisineName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  const handleIncrement = (milkshakeId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [milkshakeId]: (prev[milkshakeId] || 0) + 1,
-    }));
+const Sippity = () => {
+  const { addToCart } = useCart();
+  const location = useLocation();
+  const isAdmin = location.pathname.includes("admin");
+  const navigate = useNavigate();
+  const [editingItem, setEditingItem] = useState(null);
+
+  const handleEdit = (item) => {
+    setEditingItem(item);
+    document.body.style.overflow = "hidden"; // lock scroll when modal is open
   };
 
-  const handleDecrement = (milkshakeId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [milkshakeId]: Math.max((prev[milkshakeId] || 0) - 1, 0),
-    }));
+  const handleUpdate = async (updatedData) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/admin/items/${editingItem._id}`, updatedData);
+      setItems((prev) =>
+        prev.map((i) => (i._id === editingItem._id ? res.data : i))
+      );
+      setEditingItem(null);
+      document.body.style.overflow = "auto"; // restore scroll
+      toast.success("Item updated successfully");
+    } catch (error) {
+      toast.error("Update failed");
+    }
   };
+
+  const handleDelete = async (id, name) => {
+    if (window.confirm(`Delete ${name}?`)) {
+      await axios.delete(`http://localhost:5000/admin/items/${id}`);
+      setItems((prev) => prev.filter((i) => i._id !== id));
+      toast.success(`Deleted ${name}`);
+    }
+  };
+
+  const {
+    filteredItems,
+    searchTerm,
+    setSearchTerm,
+    quantities,
+    increment,
+    decrement,
+    setItems,
+
+  } = customhook("http://localhost:5000/client/items/milkshakes");
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   return (
     <>
-      <div className="flex flex-row gap-2 p-2 sticky top-0 bg-white z-10 shadow-sm">
+      <ToastContainer />
+      {/* Filters */}
+      <div className="flex gap-2 p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
         <input
           type="text"
-          placeholder="Search milkshakes..."
-          className="border px-3 py-1 rounded flex-grow max-w-md"
+          className="border px-2 py-0.5 rounded flex-grow max-w-md"
+          placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <div className="p-4 pb-20">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          Our Milkshake Collection
-        </h2>
-        {filteredSippity.length === 0 && <p className="text-center text-gray-500">No milkshakes found</p>}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSippity.map((milkshake) => (
-            <div
-              key={milkshake.id}
-              className="flex flex-col items-center rounded-lg p-4 bg-white shadow-sm"
+      {/* Edit Modal */}
+      {editingItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="relative bg-white dark:bg-gray-900 text-black dark:text-white rounded-lg shadow-lg p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
+
+            {/* ❌ Close button */}
+            <button
+              className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold"
+              onClick={() => {
+                setEditingItem(null);
+                document.body.style.overflow = "auto";
+              }}
             >
-              <div className="relative">
-                <button className="absolute bottom-0 left-0 bg-white border text-black rounded-full w-6 h-6 flex items-center justify-center text-sm " onClick={()=>handleDecrement(milkshake.id)}>
-                  -
-                </button>
-                <img
-                  src={milkshake.cuisineImg}
-                  alt={milkshake.cuisineName}
-                  className="w-24 h-24 object-cover rounded-full border"
-                  onError={(e) => {
-                    e.target.src =
-                      "https://via.placeholder.com/100x100?text=Milkshake";
-                    e.target.onerror = null;
-                  }}
-                />
-                <button className="absolute bottom-0 right-0 bg-white text-black border rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-green-600" onClick={()=>handleIncrement(milkshake.id)}>
-                  +
-                </button>
-              </div>
-              <div>
-                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
-                  {milkshake.cuisineName}
-                </h3>
-                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">
-                  ₹{milkshake.cuisinePrice}
-                </h3>
-                <h3 className="mt-2 font-semibold text-gray-800 text-center text-sm">Quantity:{quantities[milkshake.id] || 0}</h3>
-              </div>
-            </div>
-          ))}
+              &times;
+            </button>
+
+            <EditForm
+              item={editingItem}
+              onSubmit={handleUpdate}
+              onCancel={() => {
+                setEditingItem(null);
+                document.body.style.overflow = "auto";
+              }}
+            />
+          </div>
         </div>
+      )}
+
+      {/* Item Grid */}
+      <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {filteredItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
+            quantity={quantities[item.id]}
+            increment={increment}
+            decrement={decrement}
+            isAdmin={isAdmin}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            hideDietIndicator={true}
+          />
+        ))}
       </div>
 
-      <div className="flex fixed bottom-0 left-0 w-full justify-around bg-white p-4  shadow-lg">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
-          <Link to="/" className="text-white no-underline">
-            Home
-          </Link>
-        </button>
-        <button className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition">
-          <Link to="/stalls" className="text-white no-underline">
-            Back
-          </Link>
-        </button>
-        <button
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
-          onClick={() => {
-  sippity.forEach((milkshake) => {
-    const qty = quantities[milkshake.id] || 0;
-    if (qty > 0) {
-      addToCart({...milkshake,
-        quantity: qty,
-        cuisinePrice: parseFloat(milkshake.cuisinePrice),});
-    }
-  });
-  navigate("/cart");
-}}
-        >
-          Go to Cart
-        </button>
-      </div>
+      {/* Bottom Cart Actions (only for customers) */}
+      {!isAdmin && (
+        <div className="fixed bottom-0 left-0 w-full flex justify-around bg-white dark:bg-gray-900 p-4 shadow-lg z-20">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+            <Link to="/">Home</Link>
+          </button>
+          <button className="bg-gray-500 text-white px-4 py-2 rounded">
+            <Link to="/stalls">Back</Link>
+          </button>
+          <button
+            className="bg-green-600 text-white px-4 py-2 rounded"
+            onClick={() => {
+              filteredItems.forEach((item) => {
+                const qty = quantities[item.id] || 0;
+                if (qty > 0) {
+                  addToCart({
+                    ...item,
+                    quantity: qty,
+                    cuisinePrice: parseFloat(item.cuisinePrice),
+                  });
+                }
+              });
+              navigate("/cart", { state: { from: location.pathname } });
+            }}
+          >
+            Go to Cart
+          </button>
+        </div>
+      )}
     </>
   );
-}
+};
+
 export default Sippity;
