@@ -67,7 +67,7 @@ const ItemCard = ({
             Edit
           </button>
           <button
-            onClick={() => onDelete(item.id, item.cuisineName)}
+            onClick={() => onDelete(item._id, item.cuisineName)}
             className="bg-red-500 text-white text-sm px-2 py-1 rounded"
           >
             Delete

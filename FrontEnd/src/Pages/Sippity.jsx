@@ -14,6 +14,33 @@ const Sippity = () => {
   const isAdmin = location.pathname.includes("admin");
   const navigate = useNavigate();
   const [editingItem, setEditingItem] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const {
+    filteredItems,
+    searchTerm,
+    setSearchTerm,
+    quantities,
+    increment,
+    decrement,
+    setItems,
+  } = customhook("http://localhost:5000/client/items/milkshakes");
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+  const paginatedItems = isAdmin
+    ? filteredItems.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
+    : filteredItems;
 
   const handleEdit = (item) => {
     setEditingItem(item);
@@ -22,7 +49,10 @@ const Sippity = () => {
 
   const handleUpdate = async (updatedData) => {
     try {
-      const res = await axios.put(`http://localhost:5000/admin/items/${editingItem._id}`, updatedData);
+      const res = await axios.put(
+        `http://localhost:5000/admin/items/${editingItem._id}`,
+        updatedData
+      );
       setItems((prev) =>
         prev.map((i) => (i._id === editingItem._id ? res.data : i))
       );
@@ -42,28 +72,11 @@ const Sippity = () => {
     }
   };
 
-  const {
-    filteredItems,
-    searchTerm,
-    setSearchTerm,
-    quantities,
-    increment,
-    decrement,
-    setItems,
-
-  } = customhook("http://localhost:5000/client/items/milkshakes");
-
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   return (
     <>
       <ToastContainer />
       {/* Filters */}
-      <div className="flex gap-2 p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
+      <div className="flex gap-2 p-2 sticky top-0 bg-white dark:bg-gray-900 justify-between z-10">
         <input
           type="text"
           className="border px-2 py-0.5 rounded flex-grow max-w-md"
@@ -71,13 +84,30 @@ const Sippity = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+          {isAdmin && (
+          <button
+            onClick={() =>
+              setEditingItem({
+                cuisineName: "",
+                cuisineDescription: "",
+                cuisinePrice: "",
+                servesFor: "",
+                spicyLevel: "",
+                veganFriendly: false,
+                cuisineImg: "",
+              })
+            }
+            className="bg-violet-500 text-white px-3 py-1 rounded"
+          >
+            + Add Item
+          </button>
+        )}
       </div>
 
       {/* Edit Modal */}
       {editingItem && (
         <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="relative bg-white dark:bg-gray-900 text-black dark:text-white rounded-lg shadow-lg p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
-
             {/* ❌ Close button */}
             <button
               className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold"
@@ -103,7 +133,7 @@ const Sippity = () => {
 
       {/* Item Grid */}
       <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {filteredItems.map((item) => (
+        {paginatedItems.map((item) => (
           <ItemCard
             key={item._id}
             item={item}
@@ -117,6 +147,25 @@ const Sippity = () => {
           />
         ))}
       </div>
+      {isAdmin && (
+        <div className="flex justify-center my-4 space-x-2">
+          {Array.from({
+            length: Math.ceil(filteredItems.length / itemsPerPage),
+          }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`px-3 py-1 rounded ${
+                currentPage === index + 1
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Bottom Cart Actions (only for customers) */}
       {!isAdmin && (

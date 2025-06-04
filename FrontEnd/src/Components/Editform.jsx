@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const EditForm = ({ item, onSubmit, onCancel }) =>{
+const EditForm = ({ item, onSubmit, onCancel,title }) =>{
   const [formData, setFormData] = useState({
     cuisineName: "",
     cuisineDescription: "",
@@ -45,7 +45,7 @@ const EditForm = ({ item, onSubmit, onCancel }) =>{
       onSubmit={handleSubmit}
       className="p-6 bg-white rounded-lg shadow-md max-w-lg mx-auto mt-6"
     >
-      <h2 className="text-lg font-semibold mb-4">Edit Item</h2>
+      <h2 className="text-lg font-semibold mb-4">{title}</h2>
 
       <input
         name="cuisineName"
