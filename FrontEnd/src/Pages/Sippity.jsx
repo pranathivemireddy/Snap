@@ -16,25 +16,26 @@ const Sippity = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-
   const {
     filteredItems,
     searchTerm,
     setSearchTerm,
+    vegFilter,
+    nonVegFilter,
+    toggleVeg,
+    toggleNonVeg,
     quantities,
     increment,
     decrement,
     setItems,
   } = customhook("http://localhost:5000/client/items/milkshakes");
+  const category = "milkshakes";
 
   useEffect(() => {
     return () => {
       document.body.style.overflow = "auto";
     };
   }, []);
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
   const paginatedItems = isAdmin
     ? filteredItems.slice(
         (currentPage - 1) * itemsPerPage,
@@ -44,47 +45,91 @@ const Sippity = () => {
 
   const handleEdit = (item) => {
     setEditingItem(item);
-    document.body.style.overflow = "hidden"; // lock scroll when modal is open
+    document.body.style.overflow = "hidden";
   };
 
   const handleUpdate = async (updatedData) => {
     try {
-      const res = await axios.put(
-        `http://localhost:5000/admin/items/${editingItem._id}`,
-        updatedData
-      );
-      setItems((prev) =>
-        prev.map((i) => (i._id === editingItem._id ? res.data : i))
-      );
+      let res;
+      if (editingItem._id) {
+        res = await axios.put(
+          `http://localhost:5000/admin/items/${category}/${editingItem._id}`,
+          updatedData
+        );        
+        setItems((prev) =>
+          prev.map((i) => (i._id === editingItem._id ? res.data : i))
+        );
+        toast.success("Item updated successfully");
+      } else {
+        res = await axios.post(
+          `http://localhost:5000/admin/items/${category}`,
+          updatedData
+        );
+        
+        setItems((prev) => [...prev, res.data]); 
+        toast.success("Item added successfully");
+      }
+
       setEditingItem(null);
-      document.body.style.overflow = "auto"; // restore scroll
-      toast.success("Item updated successfully");
+      document.body.style.overflow = "auto";
     } catch (error) {
-      toast.error("Update failed");
+      console.log(error);
+      toast.error("Error adding item");
     }
   };
 
   const handleDelete = async (id, name) => {
+    console.log("Deleting id:", id);
     if (window.confirm(`Delete ${name}?`)) {
-      await axios.delete(`http://localhost:5000/admin/items/${id}`);
-      setItems((prev) => prev.filter((i) => i._id !== id));
-      toast.success(`Deleted ${name}`);
+      try {
+        const res = await axios.delete(`http://localhost:5000/admin/items/${category}/${id}`);
+        console.log("Delete response:", res.data);
+        setItems((prev) => prev.filter((i) => i._id !== id));
+        toast.success(`Deleted ${name}`);
+      } catch (error) {
+        console.error("Delete error:", error.response || error.message);
+        toast.error("Failed to delete item");
+      }
     }
   };
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   return (
     <>
       <ToastContainer />
       {/* Filters */}
-      <div className="flex gap-2 p-2 sticky top-0 bg-white dark:bg-gray-900 justify-between z-10">
-        <input
-          type="text"
-          className="border px-2 py-0.5 rounded flex-grow max-w-md"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-          {isAdmin && (
+      <div className="flex flex-wrap gap-2 p-2 sticky top-0 bg-white dark:bg-gray-900 z-10 items-center justify-between">
+        <div className="flex flex-grow gap-2 max-w-full">
+          <input
+            type="text"
+            className="border px-2 py-0.5 rounded flex-grow max-w-md"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button
+            className={`border px-3 py-1 rounded ${
+              vegFilter ? "bg-green-500 text-white" : "text-green-500"
+            }`}
+            onClick={toggleVeg}
+          >
+            Veg
+          </button>
+          <button
+            className={`border px-3 py-1 rounded ${
+              nonVegFilter ? "bg-red-500 text-white" : "text-red-500"
+            }`}
+            onClick={toggleNonVeg}
+          >
+            Non Veg
+          </button>
+        </div>
+
+        {/* Admin-only Add Item button */}
+        {isAdmin && (
           <button
             onClick={() =>
               setEditingItem({
@@ -108,7 +153,7 @@ const Sippity = () => {
       {editingItem && (
         <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="relative bg-white dark:bg-gray-900 text-black dark:text-white rounded-lg shadow-lg p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            {/* ❌ Close button */}
+            {/* Close button */}
             <button
               className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold"
               onClick={() => {
@@ -121,6 +166,7 @@ const Sippity = () => {
 
             <EditForm
               item={editingItem}
+              title={editingItem._id ? "Edit Item" : "Add Item"}
               onSubmit={handleUpdate}
               onCancel={() => {
                 setEditingItem(null);
@@ -143,7 +189,6 @@ const Sippity = () => {
             isAdmin={isAdmin}
             onDelete={handleDelete}
             onEdit={handleEdit}
-            hideDietIndicator={true}
           />
         ))}
       </div>
@@ -170,9 +215,6 @@ const Sippity = () => {
       {/* Bottom Cart Actions (only for customers) */}
       {!isAdmin && (
         <div className="fixed bottom-0 left-0 w-full flex justify-around bg-white dark:bg-gray-900 p-4 shadow-lg z-20">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
-            <Link to="/">Home</Link>
-          </button>
           <button className="bg-gray-500 text-white px-4 py-2 rounded">
             <Link to="/stalls">Back</Link>
           </button>

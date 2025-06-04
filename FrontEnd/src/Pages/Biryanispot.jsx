@@ -52,7 +52,6 @@ const Biryanispot = () => {
     try {
       let res;
       if (editingItem._id) {
-        // This is an edit
         res = await axios.put(
           `http://localhost:5000/admin/items/${category}/${editingItem._id}`,
           updatedData
@@ -62,13 +61,12 @@ const Biryanispot = () => {
         );
         toast.success("Item updated successfully");
       } else {
-        // This is an add
         res = await axios.post(
           `http://localhost:5000/admin/items/${category}`,
           updatedData
         );
         
-        setItems((prev) => [...prev, res.data]); // Add new item to state
+        setItems((prev) => [...prev, res.data]); 
         toast.success("Item added successfully");
       }
 
@@ -94,7 +92,6 @@ const Biryanispot = () => {
       }
     }
   };
-  
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
