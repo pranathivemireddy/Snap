@@ -2,7 +2,7 @@ const getFoodModelByCategory = require('../Models/FoodModel')
 
 const getItemsByCategory = async (req, res) => {
   const category = req.params.category.toLowerCase();
-  console.log("Requested category:", category);
+  // console.log("Requested category:", category);
 
   try {
     const FoodModel = getFoodModelByCategory(category);

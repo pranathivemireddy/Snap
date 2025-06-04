@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const foodSchema =  new mongoose.Schema({
     id: {
       type: Number,
-      required: true,
+      required: false,
     },
     cuisineName: {
       type: String,
@@ -35,7 +35,7 @@ const foodSchema =  new mongoose.Schema({
     },
     category: {
       type: String,
-      required: true,
+      required: false,
     }
   }, { minimize: false });
 

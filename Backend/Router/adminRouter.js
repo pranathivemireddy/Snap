@@ -1,34 +1,72 @@
 const express = require('express');
 const getCategories = require('../Controllers/adminController');
-const Item = require('../Models/FoodModel')
-const adminRouter = express.Router()
+const getFoodModelByCategory = require('../Models/FoodModel');
 
-adminRouter.get('/allcategories',getCategories)
-// Example: Express route
-adminRouter.put('/admin/items/:id', async (req, res) => {
-  const { id } = req.params;
-  const updatedData = req.body;
+const adminRouter = express.Router();
+
+// Get all categories
+adminRouter.get('/allcategories', getCategories);
+// In adminRouter file
+adminRouter.get('/items/:category', async (req, res) => {
+  const { category } = req.params;
+  const FoodModel = getFoodModelByCategory(category);
 
   try {
-    const updatedItem = await ItemModel.findByIdAndUpdate(id, updatedData, { new: true });
+    const items = await FoodModel.find();
+    res.json(items);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch items' });
+  }
+});
+
+
+// Add item (POST)
+adminRouter.post('/items/:category', async (req, res) => {
+  const { category } = req.params;
+  const FoodModel = getFoodModelByCategory(category);
+  const newItem = new FoodModel(req.body);
+  console.log("Received POST:", req.body);
+
+  try {
+    const savedItem = await newItem.save();
+    res.status(201).json(savedItem);
+  } catch (error) {
+    console.error('Error adding item:', error);
+    res.status(500).json({ error: 'Failed to add item' });
+  }
+});
+
+// Edit item (PUT)
+adminRouter.put('/items/:category/:id', async (req, res) => {
+  const { category, id } = req.params;
+  const FoodModel = getFoodModelByCategory(category);
+  console.log("Edit request for:", { category, id, body: req.body });
+  try {
+    const updatedItem = await FoodModel.findByIdAndUpdate(id, req.body, { new: true });
     if (!updatedItem) return res.status(404).json({ error: "Item not found" });
     res.json(updatedItem);
-  }  catch (error) {
-    console.error("Update error:", error.response?.data || error.message);
-    toast.error("Update failed");
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update item",message:error.message });
   }
-  
 });
 
-adminRouter.delete('/items/:id', async (req, res) => {
+adminRouter.delete('/items/:category/:id', async (req, res) => {
+  const { category, id } = req.params;
+  console.log("Backend delete request for ID:", id, "Category:", category);
+
+  const FoodModel = getFoodModelByCategory(category);
+
   try {
-    await Item.findByIdAndDelete(req.params.id);
+    const deleted = await FoodModel.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Item not found for deletion" });
+    }
     res.json({ message: 'Item deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete item' });
+    console.error("Delete error:", error); 
+    res.status(500).json({ error: 'Failed to delete item', details: error.message });
   }
 });
-
 
 
 module.exports = adminRouter;
