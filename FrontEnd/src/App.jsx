@@ -10,10 +10,9 @@ import Sippity from './Pages/Sippity'
 import Snoozyscoops from './Pages/Snoozyscoops'
 import Cart from './Components/Cart'
 import Payment from './Components/Payment'
-import Admin from '../Admin/admin'
+import Admin from '../Admin/Admin'
+// import PaymentQR from './Components/PaymentQr'
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Router>
@@ -27,7 +26,8 @@ function App() {
           <Route path='/sippity' element={<Sippity/>}/>
           <Route path='/snoozyscoops' element={<Snoozyscoops/>}/>
           <Route path='cart' element={<Cart/>}/>
-          <Route path='/payment' element={<Payment/>}/>
+          <Route path='/payment' element={<Payment />}/>
+          {/* <Route path="/paymentqr" element={<PaymentQR />} /> */}
           <Route path='/admin' element={<Admin/>}/>
         </Routes>
     </Router>

@@ -18,20 +18,30 @@ function Admin() {
     milkshakes: <Sippity />,
     icecreams: <Snoozyscoops />,
   };
-  
+
   const renderContent = () => {
     return categoryMap[selectedCategory] || (
-      <p className="text-gray-400">Please select a category</p>
+      <div className="flex items-center justify-center h-full">
+        <h2 className="text-red-400 font-bold text-xl text-center mt-40">
+          Please select a category
+        </h2>
+      </div>
     );
   };
-  
 
   return (
-    <div className="flex">
-      <Sidebar setSelectedCategory={setSelectedCategory} />
-      <div className="admin w-full h-lvh">
-        <h1 className="text-xl font-bold text-center mt-4">Welcome, Admin!</h1>
-        <div className="admin-content p-6 w-full">{renderContent()}</div>
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Sidebar: Full width on mobile, fixed width on larger screens */}
+      <div className="w-full md:w-1/4 lg:w-1/5">
+        <Sidebar setSelectedCategory={setSelectedCategory} />
+      </div>
+
+      {/* Main Content */}
+      <div className="w-full md:w-3/4 lg:w-4/5 flex flex-col">
+        <h1 className="text-xl font-bold text-center mt-4 mb-4 px-4">
+          Welcome, Admin!
+        </h1>
+        <div className="p-4 flex-1 overflow-auto">{renderContent()}</div>
       </div>
     </div>
   );

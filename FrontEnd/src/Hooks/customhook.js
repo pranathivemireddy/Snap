@@ -9,35 +9,38 @@ const useFilteredItems = (endpoint) => {
   const [quantities, setQuantities] = useState({});
 
   useEffect(() => {
-    axios.get(endpoint)
+    axios
+      .get(endpoint)
       .then((res) => setItems(res.data))
       .catch((err) => console.error("Error fetching items:", err));
   }, [endpoint]);
 
   const filteredItems = items.filter((item) => {
-    const matchesSearch = item.cuisineName.toLowerCase().includes(searchTerm.toLowerCase());
-    const showVeg = vegFilter && item.veganFriendly;
-    const showNonVeg = nonVegFilter && !item.veganFriendly;
-    if (!vegFilter && !nonVegFilter) return matchesSearch;
-    return matchesSearch && (showVeg || showNonVeg);
+    const matchesSearch = item.cuisineName
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  
+    if (!matchesSearch) return false;
+  
+    if (vegFilter && item.veganFriendly) return true;
+    if (nonVegFilter && !item.veganFriendly) return true;
+    if (!vegFilter && !nonVegFilter) return true; // All items
+    return false;
   });
+  
 
-  const toggleVeg = () => {
-    setVegFilter(!vegFilter);
-    if (!vegFilter) setNonVegFilter(false);
-  };
-
-  const toggleNonVeg = () => {
-    setNonVegFilter(!nonVegFilter);
-    if (!nonVegFilter) setVegFilter(false);
-  };
+  const toggleVeg = (value = !vegFilter) => setVegFilter(value);
+  const toggleNonVeg = (value = !nonVegFilter) => setNonVegFilter(value);
 
   const increment = (id) => {
     setQuantities((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
   };
 
   const decrement = (id) => {
-    setQuantities((prev) => ({ ...prev, [id]: Math.max((prev[id] || 0) - 1, 0) }));
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max((prev[id] || 0) - 1, 0),
+    }));
   };
 
   return {

@@ -21,7 +21,7 @@ const ItemCard = ({
             />
           ) : (
             <span
-              className="w-0 h-0 border-l-[8px] border-r-[8px] border-b-[14px] border-l-transparent border-r-transparent border-b-red-600 inline-block"
+              className="w-4 h-4 bg-red-600 rounded-full border-2 border-red-600 inline-block"
               title="Non Veg"
             />
           )}

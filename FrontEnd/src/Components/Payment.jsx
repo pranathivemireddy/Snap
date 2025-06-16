@@ -1,95 +1,104 @@
-import React, { useState } from 'react';
-import { useNavigate,Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
+import { FaArrowLeft, FaHome } from "react-icons/fa";
 
-export default function Payment() {
-  const [number, setNumber] = useState('');
+export default function Payment({ amount }) {
+  const [number, setNumber] = useState("");
+  const navigate = useNavigate();
+
+  const generateToken = () => Math.floor(100000 + Math.random() * 900000);
+
   const handleClick = (value) => {
     if (number.length < 10) {
       setNumber((prev) => prev + value);
     }
   };
-  const handleClear = () => setNumber('');
-  const handleBack = () => setNumber(i => i.slice(0, -1));
+
+  const handleClear = () => setNumber("");
+  const handleBack = () => setNumber((i) => i.slice(0, -1));
+
   const sendMessage = () => {
-    const message = encodeURIComponent('Hello, this is a payment message');
     if (number.length >= 10) {
-      const whatsappLink = `https://wa.me/${number}?text=${message}`;
-      window.open(whatsappLink, '_blank');
+      const token = generateToken();
+      const message = `Your payment token is: ${token}`;
+
+      window.location.href = `sms:${number}?body=${encodeURIComponent(message)}`;
+
+      localStorage.setItem("paymentToken", token);
+      localStorage.setItem("paymentAmount", amount);
+
+      setTimeout(() => {
+        navigate(`/payment-qr?token=${token}&amount=${amount}`);
+      }, 1000);
     } else {
-      alert('Please enter a valid number');
+      alert("Please enter a valid 10-digit number");
     }
   };
 
-  const sendSMS = () => {
-    if (number.length >= 10) {
-      window.location.href = `sms:${number}?body=Hello, this is a payment message`;
-    } else {
-      alert('Please enter a valid number');
-    }
-  };
+  const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"];
 
-  const keys = [
-    '1', '2', '3','4', '5', '6','7', '8', '9','*', '0', '#'
-  ];
   return (
-    <div className="max-w-xs mx-auto mt-10 align-middle p-4 bg-white shadow rounded">
-      <input
-        readOnly
-        value={number}
-        className="w-full mb-4 p-3 border rounded text-center text-lg"
-        placeholder="Mobile Number"
-      />
-      <div className="grid grid-cols-3 mb-2 gap-1.5 p-1">
-        {keys.map((n) => (
-          <div
-            key={n}
-            onClick={() => handleClick(n)}
-            className="text-black rounded w-auto text-center gap-1.5 py-3 shadow-sm"
-          >
-            {n}
-          </div>
-        ))}
-
-        <button
-          onClick={handleBack}
-          className="flex-1  hover:bg-red-600 text-black shadow-sm py-1 rounded text-lg"
+    <>
+      {/* Top Navigation Buttons */}
+      <div className="flex fixed top-0 left-0 w-full justify-between items-center bg-white px-4 py-3 shadow z-10">
+        {/* Back Button on the Left */}
+        <Link
+          to="/cart"
+          className="text-gray-700 hover:text-black"
         >
-          X
-        </button>
-
-        <button
-          onClick={()=>{}}        >
+          <FaArrowLeft size={20} />
           
-        </button>
-        <button
-          onClick={handleClear}
-          className="flex-1 text-black shadow-sm py-1 rounded text-lg"
-        >Clear        </button>
-        <div />
+          
+        </Link>
+
+        {/* Home Button on the Right */}
+        <Link to="/stalls" className="text-gray-700 hover:text-black">
+          <FaHome size={20} />
+        </Link>
       </div>
 
-      <div className="flex flex-col gap-2 mt-4">
-  <button
-    onClick={sendMessage}
-    className="flex-1 bg-green-300 shadow-sm py-1 rounded text-lg"
-  >
-    Submit
-  </button>
- 
-</div>
- <div className="flex fixed bottom-0 left-0 w-full justify-around bg-white p-4 shadow-lg">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
-          <Link to="/stalls" className="text-white no-underline">
-            Home
-          </Link>
-        </button>
-        <button className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition">
-          <Link to="/cart" className="text-white no-underline">
+      {/* Main Content */}
+      <div className="max-w-xs mx-auto mt-24 p-4 bg-white shadow rounded">
+        <input
+          readOnly
+          value={number}
+          className="w-full mb-4 p-3 border rounded text-center text-lg"
+          placeholder="Mobile Number"
+        />
+        <div className="grid grid-cols-3 mb-2 gap-1.5 p-1">
+          {keys.map((n) => (
+            <button
+              key={n}
+              onClick={() => handleClick(n)}
+              className="text-black rounded py-3 shadow-sm hover:bg-gray-200"
+            >
+              {n}
+            </button>
+          ))}
+
+          <button
+            onClick={handleBack}
+            className="flex-1 hover:bg-red-600 text-white bg-red-400 shadow-sm py-1 rounded text-lg"
+          >
             Back
-          </Link>
+          </button>
+          <button> </button>
+          <button
+            onClick={handleClear}
+            className="flex-1 hover:bg-gray-400 text-black shadow-sm py-1 rounded text-lg"
+          >
+            Clear
+          </button>
+        </div>
+
+        <button
+          onClick={sendMessage}
+          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded text-lg mt-4"
+        >
+          Submit
         </button>
-        
       </div>
-    </div>
+    </>
   );
 }

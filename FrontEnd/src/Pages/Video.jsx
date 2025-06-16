@@ -1,64 +1,57 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Video = () => {
-  const handleClick = () => {
-    window.location.href = "/stalls";
-  };
-
-  const [animateButton, setAnimateButton] = useState(false);
+  const navigate = useNavigate();
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    setAnimateButton(true);
+    setAnimate(true);
   }, []);
 
   return (
-    <div className="bg-white h-screen w-full flex items-center justify-center">
-      {/* Laptop & large screen view */}
-      <div className="hidden lg:flex flex-row h-screen items-center justify-center px-20">
-        <div className="w-1/2 flex justify-center">
-          <video
-            src="/video.mp4"
-            width="480"
-            height="240"
-            controls
-            autoPlay
-            loop
-            className="rounded-lg shadow-md"
-          ></video>
+    <div className="bg-gradient-to-br from-white to-orange-50 min-h-screen flex flex-col items-center overflow-hidden relative px-4 sm:px-6 md:px-10 lg:px-20 mt-40">
+      {/* Admin Button - Responsive Top Right */}
+      <button
+        onClick={() => navigate("/admin")}
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-red-100 text-red-700 font-bold px-4 sm:px-5 py-2 sm:py-3 rounded-md sm:rounded-lg text-xs sm:text-sm hover:bg-red-200 shadow-sm z-20"
+      >
+        Are you Admin?
+      </button>
+
+      {/* Main Content Wrapper */}
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl gap-8 mt-16 lg:mt-0">
+        {/* Image Section */}
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <img
+            src="/food.png"
+            alt="Delicious food"
+            className="rounded-lg shadow-lg border-2 border-orange-100 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-md"
+          />
         </div>
-        <div className="w-1/2 text-left mt-6 lg:mt-0">
-          <h1 className="text-4xl font-bold mb-4 text-orange-600">
-            Feeling Hungry?
+
+        {/* Text Section */}
+        <div className="w-full lg:w-1/2 text-center lg:text-left mt-8 lg:mt-0">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-orange-600 mb-4 leading-tight">
+            🍽️ Feeling Hungry?
           </h1>
-          <p className="text-lg mb-6 text-gray-700">
-            Explore our digital stalls and order your favorite dishes—fresh,
-            fast, and contactless!
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6">
+            Discover a digital mall of food stalls—order what you love, fast and contactless.
           </p>
+
           <button
-            onClick={handleClick}
-            className={`bg-orange-500 text-white px-6 py-4 rounded-md text-lg font-semibold shadow-lg hover:bg-orange-600`}
+            onClick={() => navigate("/stalls")}
+            className={`bg-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-lg font-bold shadow-md transform transition-transform duration-300 hover:scale-105 hover:bg-orange-600 ${
+              animate ? "animate-bounce" : ""
+            }`}
           >
             HUNGRY? TOUCH HERE TO ORDER
           </button>
-        </div>
-      </div>
 
-      {/* Mobile View */}
-      <div className="flex flex-col lg:hidden items-center justify-center px-4">
-        <video
-          src="/video.mp4"
-          width="320"
-          height="180"
-          controls
-          autoPlay
-          loop
-        ></video>
-        <button
-          className="bg-orange-500 px-6 py-3 text-white font-semibold shadow"
-          onClick={handleClick}
-        >
-          HUNGRY? TOUCH HERE TO ORDER
-        </button>
+          <p className="mt-4 text-sm text-gray-500 italic">
+            Walk through our digital food court with just a tap!
+          </p>
+        </div>
       </div>
     </div>
   );
