@@ -25,8 +25,6 @@ adminRouter.post('/items/:category', async (req, res) => {
   const { category } = req.params;
   const FoodModel = getFoodModelByCategory(category);
   const newItem = new FoodModel(req.body);
-  console.log("Received POST:", req.body);
-
   try {
     const savedItem = await newItem.save();
     res.status(201).json(savedItem);
@@ -40,7 +38,6 @@ adminRouter.post('/items/:category', async (req, res) => {
 adminRouter.put('/items/:category/:id', async (req, res) => {
   const { category, id } = req.params;
   const FoodModel = getFoodModelByCategory(category);
-  console.log("Edit request for:", { category, id, body: req.body });
   try {
     const updatedItem = await FoodModel.findByIdAndUpdate(id, req.body, { new: true });
     if (!updatedItem) return res.status(404).json({ error: "Item not found" });
@@ -52,8 +49,6 @@ adminRouter.put('/items/:category/:id', async (req, res) => {
 
 adminRouter.delete('/items/:category/:id', async (req, res) => {
   const { category, id } = req.params;
-  console.log("Backend delete request for ID:", id, "Category:", category);
-
   const FoodModel = getFoodModelByCategory(category);
 
   try {
