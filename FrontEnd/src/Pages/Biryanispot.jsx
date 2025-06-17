@@ -6,7 +6,7 @@ import ItemCard from "../Components/Itemcard";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import EditForm from "../Components/Editform";
 
 const Biryanispot = () => {
