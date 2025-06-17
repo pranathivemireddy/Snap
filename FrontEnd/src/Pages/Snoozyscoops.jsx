@@ -31,7 +31,7 @@ const Snoozyscoops = () => {
     increment,
     decrement,
     setItems,
-  } = customhook("http://localhost:5000/client/items/icecreams");
+  } = customhook("https://snap-9b5y.onrender.com/client/items/icecreams");
 
   useEffect(() => {
     return () => {
@@ -62,7 +62,7 @@ const Snoozyscoops = () => {
       let res;
       if (editingItem._id) {
         res = await axios.put(
-          `http://localhost:5000/admin/items/${category}/${editingItem._id}`,
+          `https://snap-9b5y.onrender.com/admin/items/${category}/${editingItem._id}`,
           updatedData
         );
         setItems((prev) =>
@@ -71,7 +71,7 @@ const Snoozyscoops = () => {
         toast.success("Item updated successfully");
       } else {
         res = await axios.post(
-          `http://localhost:5000/admin/items/${category}`,
+          `https://snap-9b5y.onrender.com/admin/items/${category}`,
           updatedData
         );
         setItems((prev) => [...prev, res.data]);
@@ -89,7 +89,7 @@ const Snoozyscoops = () => {
   const handleDelete = async (id, name) => {
     if (window.confirm(`Delete ${name}?`)) {
       try {
-        await axios.delete(`http://localhost:5000/admin/items/${category}/${id}`);
+        await axios.delete(`https://snap-9b5y.onrender.com/admin/items/${category}/${id}`);
         setItems((prev) => prev.filter((i) => i._id !== id));
         toast.success(`Deleted ${name}`);
       } catch (error) {

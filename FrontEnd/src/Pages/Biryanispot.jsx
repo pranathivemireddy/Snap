@@ -31,7 +31,7 @@ const Biryanispot = () => {
     increment,
     decrement,
     setItems,
-  } = customhook("http://localhost:5000/client/items/biryanis");
+  } = customhook("https://snap-9b5y.onrender.com/client/items/biryanis");
 
   useEffect(() => {
     return () => {
@@ -65,7 +65,7 @@ const Biryanispot = () => {
       let res;
       if (editingItem._id) {
         res = await axios.put(
-          `http://localhost:5000/admin/items/${category}/${editingItem._id}`,
+          `https://snap-9b5y.onrender.com/admin/items/${category}/${editingItem._id}`,
           updatedData
         );
         setItems((prev) =>
@@ -74,7 +74,7 @@ const Biryanispot = () => {
         toast.success("Item updated successfully");
       } else {
         res = await axios.post(
-          `http://localhost:5000/admin/items/${category}`,
+          `https://snap-9b5y.onrender.com/admin/items/${category}`,
           updatedData
         );
         setItems((prev) => [...prev, res.data]);
@@ -93,7 +93,7 @@ const Biryanispot = () => {
     if (window.confirm(`Delete ${name}?`)) {
       try {
         await axios.delete(
-          `http://localhost:5000/admin/items/${category}/${id}`
+          `https://snap-9b5y.onrender.com/admin/items/${category}/${id}`
         );
         setItems((prev) => prev.filter((i) => i._id !== id));
         toast.success(`Deleted ${name}`);

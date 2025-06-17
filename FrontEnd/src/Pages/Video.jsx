@@ -10,7 +10,7 @@ const Video = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-white to-orange-50 min-h-screen flex flex-col items-center overflow-hidden relative px-4 sm:px-6 md:px-10 lg:px-20 mt-40">
+    <div className="bg-gradient-to-br from-white to-orange-50 min-h-screen flex flex-col items-center overflow-hidden relative px-4 sm:px-6 md:px-10 lg:px-20 mt-40 sm:mt-10 md:mt-30 lg:mt-40 xl:mt-42">
       {/* Admin Button - Responsive Top Right */}
       <button
         onClick={() => navigate("/admin")}
