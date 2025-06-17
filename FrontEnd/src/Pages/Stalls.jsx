@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-import biryanisImg from '../../public/biryani.jpg'
-import burgersImg from '../../public/burger.jpg'
-import pizzasImg from '../../public/pizza.jpg'
-import wrapsImg from '../../public/wraps.jpg'
-import milkshakesImg from '../../public/milkshake.jpg'
-import icecreamsImg from '../../public/icecream.jpg'
-import foodcourtImg from '../../public/Foodcourt.png'
+import foodcourtImg from '/Foodcourt.png'
 
 function Stalls() {
   const navigate = useNavigate();
@@ -33,16 +26,6 @@ function Stalls() {
     Pizzas: "/pizzarity",
     Wraps: "/wrapeats",
   };
-
-  const imageMap = {
-    Biryanis: biryanisImg,
-    Burgers: burgersImg,
-    Pizzas: pizzasImg,
-    Wraps: wrapsImg,
-    Milkshakes: milkshakesImg,
-    Icecreams: icecreamsImg,
-  };
-
   useEffect(() => {
     axios
       .get("https://snap-9b5y.onrender.com/admin/allcategories")
@@ -96,8 +79,6 @@ function Stalls() {
               className="relative h-28 rounded-xl bg-cover bg-center shadow-md cursor-pointer
                          hover:scale-105 hover:shadow-lg transition-transform duration-200
                          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-              style={{ backgroundImage: `url(${imageMap[name]})` }}
-              role="button"
               aria-label={`Go to ${displayNameMap[name] || name} stall`}
             >
               <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center">

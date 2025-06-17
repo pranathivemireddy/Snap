@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import Biryanispot from "../src/Pages/Biryanispot";
-import Pizzarity from "../src/Pages/Pizzarity";
-import BurgerVault from "../src/Pages/BurgerVault";
-import Wrapeats from "../src/Pages/Wrapeats";
-import Sippity from "../src/Pages/Sippity";
-import Snoozyscoops from "../src/Pages/Snoozyscoops";
+import Biryanispot from '../Pages/Biryanispot'
+import Pizzarity from "../Pages/Pizzarity";
+import BurgerVault from "../Pages/BurgerVault";
+import Wrapeats from "../Pages/Wrapeats";
+import Sippity from "../Pages/Sippity";
+import Snoozyscoops from "../Pages/Snoozyscoops";
 
 function Admin() {
   const [selectedCategory, setSelectedCategory] = useState("");
