@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import Video from './Pages/Video'
 import Stalls from './Pages/Stalls'
 import { BrowserRouter as Router, Routes,Route} from 'react-router-dom'
@@ -11,7 +11,7 @@ import Snoozyscoops from './Pages/Snoozyscoops'
 import Cart from './Components/Cart'
 import Payment from './Components/Payment'
 import Admin from './Admin/Admin'
-// import PaymentQR from './Components/PaymentQr'
+import PaymentQR from './Components/PaymentQr'
 function App() {
   return (
     <>
@@ -27,7 +27,7 @@ function App() {
           <Route path='/snoozyscoops' element={<Snoozyscoops/>}/>
           <Route path='cart' element={<Cart/>}/>
           <Route path='/payment' element={<Payment />}/>
-          {/* <Route path="/paymentqr" element={<PaymentQR />} /> */}
+          <Route path="/paymentqr" element={<PaymentQR />} />
           <Route path='/admin' element={<Admin/>}/>
         </Routes>
     </Router>

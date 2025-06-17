@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../Components/CartContext";
 import { FaArrowLeft, FaHome } from "react-icons/fa";
 
@@ -16,10 +16,12 @@ function Cart() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      
       {/* 🔝 Header with back, title, and home */}
       <div className="flex items-center justify-between px-4 py-3 bg-white shadow-md">
-        <button onClick={() => navigate(previousRoute)} className="text-gray-700 hover:text-black">
+        <button
+          onClick={() => navigate(previousRoute)}
+          className="text-gray-700 hover:text-black"
+        >
           <FaArrowLeft size={20} />
         </button>
         <h1 className="text-xl font-semibold text-gray-800">Your Cart</h1>
@@ -35,7 +37,10 @@ function Cart() {
         ) : (
           <>
             {cartItems.map((item) => (
-              <div key={item.id} className="mb-4 flex items-center bg-white p-3 rounded shadow-sm">
+              <div
+                key={item.id}
+                className="mb-4 flex items-center bg-white p-3 rounded shadow-sm"
+              >
                 <img
                   src={item.cuisineImg}
                   alt={item.cuisineName}
@@ -43,7 +48,9 @@ function Cart() {
                 />
                 <div>
                   <h3 className="text-lg font-semibold">{item.cuisineName}</h3>
-                  <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                  <p className="text-sm text-gray-600">
+                    Quantity: {item.quantity}
+                  </p>
                   <p className="text-sm font-medium text-green-600">
                     ₹{item.cuisinePrice * item.quantity}
                   </p>
@@ -60,9 +67,15 @@ function Cart() {
 
       {/* 🔻 Footer Buttons */}
       <div className="fixed bottom-0 left-0 w-full flex justify-center bg-white p-4 shadow-inner z-10">
-        <Link to="/payment" className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded shadow-md font-medium">
+        <button
+          onClick={() => {
+            localStorage.setItem("paymentAmount", totalAmount);
+            navigate("/payment");
+          }}
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded shadow-md font-medium"
+        >
           Proceed To Payment
-        </Link>
+        </button>
       </div>
     </div>
   );
