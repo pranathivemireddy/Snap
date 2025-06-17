@@ -10,7 +10,7 @@ import Sippity from './Pages/Sippity'
 import Snoozyscoops from './Pages/Snoozyscoops'
 import Cart from './Components/Cart'
 import Payment from './Components/Payment'
-import Admin from '../Admin/Admin'
+import Admin from './Admin/Admin'
 // import PaymentQR from './Components/PaymentQr'
 function App() {
   return (
