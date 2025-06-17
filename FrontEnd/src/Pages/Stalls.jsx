@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import biryanisImg from "/biryani.jpg";
-import burgersImg from "/burger.jpg";
-import pizzasImg from "/pizza.jpg";
-import wrapsImg from "/wraps.jpg";
-import milkshakesImg from "/milkshake.jpg";
-import icecreamsImg from "/icecream.jpg";
-import foodcourtImg from "/Foodcourt.png";
+import biryanisImg from '../../public/biryani.jpg'
+import burgersImg from '../../public/burger.jpg'
+import pizzasImg from '../../public/pizza.jpg'
+import wrapsImg from '../../public/wraps.jpg'
+import milkshakesImg from '../../public/milkshake.jpg'
+import icecreamsImg from '../../public/icecream.jpg'
+import foodcourtImg from '../../public/Foodcourt.png'
 
 function Stalls() {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ function Stalls() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/allcategories")
+      .get("https://snap-9b5y.onrender.com/admin/allcategories")
       .then((response) => {
         setCategories(response.data);
         setLoading(false);

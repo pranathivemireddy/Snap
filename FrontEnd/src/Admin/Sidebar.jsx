@@ -8,7 +8,7 @@ function Sidebar({ setSelectedCategory }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/admin/allcategories')
+      .get('https://snap-9b5y.onrender.com/admin/allcategories')
       .then((res) => {
         setCategories(res.data);
       })
