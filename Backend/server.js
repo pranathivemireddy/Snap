@@ -5,6 +5,7 @@ const cors = require('cors');
 const connectDB = require('./Config/dbconnect');
 const adminRouter = require('./Router/adminRouter');
 const clientRoute = require('./Router/clientRouter');
+const paymentRouter = require('./Router/paymentRouter');
 dotenv.config();
 const app = express();
 
@@ -19,8 +20,9 @@ app.use(express.json());
 
 app.use('/admin', adminRouter); // e.g., http://localhost:5000/adimin/allcategories
 app.use('/client', clientRoute); // e.g., http://localhost:5000/client/items/biryanis
+app.use('/api/payments',paymentRouter);
 connectDB()
-  .then(async () => {
+  .then(async () => { 
       app.listen(port, () => {
       console.log(`Server started successfully at http://localhost:${port}`);
     });
