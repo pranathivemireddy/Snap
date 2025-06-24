@@ -33,13 +33,13 @@ const ItemCard = ({
           <div className="absolute bottom-0 left-0 right-0 flex justify-between">
             <button
               onClick={() => decrement(item.id)}
-              className="text-sm border rounded-full w-6 h-6 bg-white"
+              className="text-sm border rounded-full w-6 h-6 bg-white cursor-pointer"
             >
               -
             </button>
             <button
               onClick={() => increment(item.id)}
-              className="text-sm border rounded-full w-6 h-6 bg-white"
+              className="text-sm border rounded-full w-6 h-6 bg-white cursor-pointer"
             >
               +
             </button>

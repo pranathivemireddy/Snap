@@ -4,7 +4,7 @@ import { FiMenu } from 'react-icons/fi';
 
 function Sidebar({ setSelectedCategory }) {
   const [categories, setCategories] = useState([]);
-  const [isOpen, setIsOpen] = useState(false); // mobile sidebar toggle
+  const [isOpen, setIsOpen] = useState(false); // for mobile sidebar toggle
 
   useEffect(() => {
     axios
@@ -20,24 +20,27 @@ function Sidebar({ setSelectedCategory }) {
 
   return (
     <>
-      {/* Hamburger icon (only on small screens) */}
-      <div className="md:hidden flex items-center p-4 bg-amber-100">
+      {/* 📱 Hamburger menu - visible only on small screens */}
+      <div className="md:hidden flex items-center bg-amber-100 mt-0">
         <button onClick={() => setIsOpen(true)}>
           <FiMenu className="text-2xl" />
         </button>
         <h2 className="ml-4 text-lg font-semibold">Categories</h2>
       </div>
 
-      {/* Sidebar - Desktop always visible, Mobile: overlay drawer */}
+      {/* 🧭 Sidebar */}
       <div
         className={`bg-amber-100 z-30 transition-transform duration-300 ease-in-out
-        md:relative md:w-60 md:block 
-        fixed top-0 left-0 h-full w-1/2 
+        md:relative md:w-60 md:block
+        fixed top-0 left-0 h-screen w-1/2
         ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
       >
+        {/* Sidebar Header */}
         <div className="text-center text-xl font-bold mt-6">Categories</div>
-        <div className="flex-1 mt-4 px-2 space-y-4 overflow-y-auto max-h-[80vh]">
-        {categories.map((cat, index) => (
+
+        {/* Scrollable list */}
+        <div className="mt-4 px-2 space-y-4 overflow-y-auto h-[calc(100vh-100px)] pb-4">
+          {categories.map((cat, index) => (
             <div
               key={index}
               className="p-3 rounded cursor-pointer hover:bg-amber-200"
@@ -57,7 +60,7 @@ function Sidebar({ setSelectedCategory }) {
         </div>
       </div>
 
-      {/* Backdrop (only mobile when sidebar is open) */}
+      {/* 🔲 Backdrop for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"

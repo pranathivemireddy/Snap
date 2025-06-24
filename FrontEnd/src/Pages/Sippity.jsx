@@ -113,7 +113,7 @@ const Sippity = () => {
   )}
 
   {/* Center: Logo */}
-  <div className="flex items-center justify-center mx-2">
+  <div className="flex items-center justify-center mx-2 cursor-pointer">
   <img
   src="/milkshake.jpg"
   alt="Logo"
@@ -132,7 +132,7 @@ const Sippity = () => {
     onChange={(e) => setSearchTerm(e.target.value)}
   />
   <button
-    className={`px-2 py-1 text-sm border rounded ${
+    className={`px-2 py-1 text-sm border rounded cursor-pointer ${
       !vegFilter && !nonVegFilter
         ? "bg-gray-800 text-white"
         : "text-gray-700 border-gray-700"
@@ -145,7 +145,7 @@ const Sippity = () => {
     All
   </button>
   <button
-    className={`px-2 py-1 text-sm border rounded ${
+    className={`px-2 py-1 text-sm border rounded cursor-pointer ${
       vegFilter ? "bg-green-500 text-white" : "text-green-600 border-green-600"
     }`}
     onClick={() => {
@@ -156,7 +156,7 @@ const Sippity = () => {
     Veg
   </button>
   <button
-    className={`px-2 py-1 text-sm border rounded ${
+    className={`px-2 py-1 text-sm border rounded cursor-pointer ${
       nonVegFilter ? "bg-red-500 text-white" : "text-red-600 border-red-600"
     }`}
     onClick={() => {
@@ -186,7 +186,7 @@ const Sippity = () => {
           });
           navigate("/cart", { state: { from: location.pathname } });
         }}
-        className="relative flex items-center justify-center bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10"
+        className="relative flex items-center justify-center bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10 cursor-pointer"
       >
         <FiShoppingCart className="text-xl" />
         {totalCartItems > 0 && (

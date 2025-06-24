@@ -78,6 +78,15 @@ const PaymentForm = () => {
           if (paymentIntent.status === "succeeded") {
             clearCart();
             localStorage.removeItem("paymentAmount");
+            await fetch("http://localhost:5000/client/send-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email,
+                orderId: paymentIntent.id,
+              }),
+            });
+          
             toast.success("Payment successful! A receipt has been sent to your email.");
             setTimeout(() => {
               navigate("/payment-success", { 
@@ -85,10 +94,10 @@ const PaymentForm = () => {
                   paymentId: paymentIntent.id,
                   amount: amount,
                   items: cartItems,
-                  email: email // Include email in navigation state
+                  email: email 
                 } 
               });
-            }, 2000);
+            }, 500);
           }
         } catch (err) {
           setError(err.message);

@@ -6,7 +6,6 @@ import ItemCard from "../Components/Itemcard";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import "react-toastify/dist/ReactToastify.css";
 import EditForm from "../Components/Editform";
 
 const Biryanispot = () => {
@@ -122,7 +121,7 @@ const Biryanispot = () => {
           <img
             src="/biryani.jpg"
             alt="Logo"
-            className="h-14 w-14 sm:h-16 sm:w-16 object-cover rounded-full"
+            className="h-14 w-14 sm:h-16 sm:w-16 object-cover rounded-full cursor-pointer"
           />
         </div>
 
@@ -136,7 +135,7 @@ const Biryanispot = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button
-            className={`px-2 py-1 text-sm border rounded ${
+            className={`px-2 py-1 text-sm border rounded cursor-pointer ${
               !vegFilter && !nonVegFilter
                 ? "bg-gray-800 text-white"
                 : "text-gray-700 border-gray-700"
@@ -149,7 +148,7 @@ const Biryanispot = () => {
             All
           </button>
           <button
-            className={`px-2 py-1 text-sm border rounded ${
+            className={`px-2 py-1 text-sm border rounded cursor-pointer ${
               vegFilter
                 ? "bg-green-500 text-white"
                 : "text-green-600 border-green-600"
@@ -162,7 +161,7 @@ const Biryanispot = () => {
             Veg
           </button>
           <button
-            className={`px-2 py-1 text-sm border rounded ${
+            className={`px-2 py-1 text-sm border rounded cursor-pointer ${
               nonVegFilter
                 ? "bg-red-500 text-white"
                 : "text-red-600 border-red-600"
@@ -193,7 +192,7 @@ const Biryanispot = () => {
                 });
                 navigate("/cart", { state: { from: location.pathname } });
               }}
-              className="relative flex items-center justify-center bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10"
+              className="relative flex items-center justify-center bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10 cursor-pointer"
             >
               <FiShoppingCart className="text-xl" />
               {totalCartItems > 0 && (
